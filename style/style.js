@@ -1,4 +1,10 @@
-const styles = StyleSheet.create({
+const STYLE = StyleSheet.create({
+  cardContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -16,3 +22,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 })
+
+module.exports = STYLE

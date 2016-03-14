@@ -11,19 +11,15 @@ import React, {
   View
 } from 'react-native'
 
-var Card = require('./ios.js/card.js')
+var CardController = require("./ios.js/cards/CardController.js")
 
-class venture extends Component {
+class VentureApp extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <CardController></CardController>
         <Text style={styles.welcome}>
           Welcome to Venture!
-        </Text>
-        <Card></Card>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
         </Text>
       </View>
     )
@@ -49,4 +45,4 @@ const styles = StyleSheet.create({
   },
 })
 
-AppRegistry.registerComponent('venture', () => venture);
+AppRegistry.registerComponent('venture', () => VentureApp);
