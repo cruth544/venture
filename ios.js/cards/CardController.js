@@ -14,14 +14,14 @@ var {
   Text,
   View,
   Image,
-  Component,
+  Modal,
   ActivityIndicatorIOS,
   Navigator,
   TouchableOpacity,
   Animation
 } = React
 
-class CardController extends Component {
+class CardController extends Modal {
   constructor(props) {
     super(props)
     this.state = {}
