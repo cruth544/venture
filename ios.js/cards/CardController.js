@@ -41,6 +41,7 @@ class CardController extends Modal {
     super(props)
     this.state = {}
     this.allCards = []
+    this.nextCardIndex = 0
     this.getAllCards()
   }
   getAllCards () {
@@ -49,22 +50,32 @@ class CardController extends Modal {
     // this.allCards.push(API CALL)
   }
 
-  fetchNewCard (currentCards, direction) {
+  cardThrown (currentCards, direction) {
     console.log("HELLOOOOOOO")
     console.log(currentCards)
     console.log("Direction: ", direction)
-    // if (thrown) {
-    //   var nextCard = new Card(this.allCards.pop())
-    //   currentCards.push(this.allCards.pop())
-    // }
+    //TODO: Set yes vs no based on direction
+    this.addNextCard(currentCards)
+    console.log(currentCards)
+  }
+  addNextCard (currentCards) {
+    currentCards.shift()
+    currentCards.push(this.allCards[this.nextCardIndex])
   }
 
   render () {
     var currentCards = []
+    for (var i = 0; i < 3; i++) {
+      currentCards.push(this.allCards[this.nextCardIndex])
+      this.nextCardIndex++
+    }
+    console.log(currentCards)
 
     return (
       <View>
-        <Card currentCards={currentCards} fetchNewCard={this.fetchNewCard}></Card>
+        {currentCards.forEach((card) => {
+          return (<Card currentCards={currentCards} cardThrown={this.cardThrown}></Card>)
+        })}
       </View>
     )
   }

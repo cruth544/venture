@@ -15,56 +15,24 @@ var {
   Navigator,
   TouchableOpacity,
   TouchableHighlight,
-  Animation
+  Animated
 } = React
 
-const THRESHOLD = 50
+const SWIPE_THRESHOLD = 120
 
 class Card extends Component {
   constructor(props) {
     super(props)
     this.state = {
       x: 0,
-      y: 0
-    }
-  }
-  setPosition (e) {
-    this.setState({
-      x: this.state.x + (e.nativeEvent.pageX - this.drag.x),
-      y: this.state.y + (e.nativeEvent.pageY - this.drag.y)
-    })
-
-    this.drag.x = e.nativeEvent.pageX
-    this.drag.y = e.nativeEvent.pageY
-  }
-  resetPostion (e) {
-    this.dragging = false
-    var thrown = Math.abs(e.nativeEvent.pageX - screenSize.width/2) > THRESHOLD
-    // var displayText = left ? 'Released left' : 'Released right'
-    if (thrown) {
-      var left = e.nativeEvent.pageX < screenSize.width/2
-      var direction
-      left ? direction = 'left' : direction = 'right'
-      this.props.fetchNewCard(this.props.currentCards, direction)
-    }
-    this.setState({
-      x: 0,
       y: 0,
-    })
-  }
-
-  // Responder
-  _onStartShouldSetResponder (e) {
-    this.dragging = true
-    this.rotateTop = e.nativeEvent.locationY <= 150
-    this.drag = {
-      x: e.nativeEvent.pageX,
-      y: e.nativeEvent.pageY
+      width: props.width ?
+        props.width : (screenSize.width * props.width) * screenSize.scale,
+      height: props.height ?
+        props.height : (screenSize.height * props.height) * screenSize.scale,
+      pan: new Animated.ValueXY(),
+      enter: new Animated.Value(0.5)
     }
-    return true
-  }
-  _onMoveShouldSetResponder (e) {
-    return true
   }
 
   // Pan Handler
@@ -80,18 +48,64 @@ class Card extends Component {
         // The guesture has started. Show visual feedback so the user knows
         // what is happening!
 
+// TODO: Add top and bottom rotation
+        // console.log("THIS: ", this.refs)
+        // if (evt.nativeEvent.locationY < this.)
         // gestureState.{x,y}0 will be set to zero now
+        this.state.pan.setOffset({
+          x: this.state.pan.x._value,
+          y: this.state.pan.y._value
+        })
+        this.state.pan.setValue({x: 0, y: 0})
       },
-      onPanResponderMove: (evt, gestureState) => {
-        // The most recent move distance is gestureState.move{X,Y}
-
-        // The accumulated gesture distance since becoming responder is
-        // gestureState.d{x,y}
-      },
+      onPanResponderMove: Animated.event([
+        null, {dx: this.state.pan.x, dy: this.state.pan.y},
+      ]),
+      // onPanResponderMove: (evt, gestureState) => {
+      //   // The most recent move distance is gestureState.move{X,Y}
+      //
+      //   // The accumulated gesture distance since becoming responder is
+      //   // gestureState.d{x,y}
+      // },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
-      onPanResponderRelease: (evt, gestureState) => {
+      onPanResponderRelease: (evt, {vx, vy}) => {
+        function clamp(value, a, b) {
+          if (value > a && value < b) return value
+          if (value < a) return a
+          if (value > b) return b
+        }
         // The user has released all touches while this view is the
         // responder. This typically means a gesture has succeeded
+        this.state.pan.flattenOffset();
+        var velocity;
+
+        if (vx >= 0) {
+          velocity = clamp(vx, 3, 5);
+        } else if (vx < 0) {
+          velocity = clamp(vx * -1, 3, 5) * -1;
+        }
+
+        if (Math.abs(this.state.pan.x._value) > SWIPE_THRESHOLD) {
+          let direction
+          this.state.pan.x._value > 0
+            ? direction = 'right'
+            : direction = 'left'
+
+          this.props.cardThrown(this.props.currentCards, direction)
+          // this.props.cardRemoved
+          //   ? this.props.cardRemoved(this.props.cards.indexOf(this.state.card))
+          //   : null
+
+          Animated.decay(this.state.pan, {
+            velocity: {x: velocity, y: vy},
+            deceleration: 0.98
+          }).start(this._resetState.bind(this))
+        } else {
+          Animated.spring(this.state.pan, {
+            toValue: {x: 0, y: 0},
+            friction: 10
+          }).start()
+        }
       },
       onPanResponderTerminate: (evt, gestureState) => {
         // Another component has become the responder, so this gesture
@@ -103,6 +117,12 @@ class Card extends Component {
         return true;
       },
     })
+  }
+  _resetState() {
+    this.state.pan.setValue({x: 0, y: 0})
+    this.state.enter.setValue(0)
+    // this._goToNextCard();
+    // this._animateEntrance();
   }
 
 
@@ -125,23 +145,21 @@ class Card extends Component {
   }
 
   render () {
+    let { pan, enter, } = this.state
+    let [translateX, translateY] = [pan.x, pan.y]
+
+    let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]})
+    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]})
+    let scale = enter
+
+    let animatedCardstyles = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity}
+
     return (
-      <TouchableHighlight underlayColor={'aqua'}>
-        <View style={[styles.card, this.getCardStyle()]}
-          onResponderMove={this.setPosition.bind(this)}
-          onResponderRelease={this.resetPostion.bind(this)}
-          onStartShouldSetResponder={this._onStartShouldSetResponder.bind(this)}
-          onMoveShouldSetResponder={this._onMoveShouldSetResponder.bind(this)}
-          >
+      <Animated.View style={[styles.container, animatedCardstyles]} {...this._panResponder.panHandlers}>
+        <View style={[styles.card, {width: this.state.width}, {height: this.state.height}]}>
           <Image source={require('../../assets/churchill.jpg')} style={styles.cardImage}/>
-          <View>
-          <Text style={styles.textLeft}>Rabbit, 10</Text>
-          <Text style={styles.textRight}>
-            1 Connection
-          </Text>
-          </View>
         </View>
-      </TouchableHighlight>
+      </Animated.View>
     )
   }
 }
@@ -156,15 +174,14 @@ var styles = StyleSheet.create({
   },
   card: {
     borderWidth: 3,
-    borderRadius: 3,
+    borderRadius: 12,
     borderColor: '#000',
-    width: 300,
-    height: 300,
     padding: 10
   },
   cardImage: {
     height: 260,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   textLeft: {
     position: 'absolute',
