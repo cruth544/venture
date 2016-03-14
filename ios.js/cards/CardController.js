@@ -9,6 +9,21 @@ var screenSize = Dimensions.get('window')
 // Custom Classes
 var Card = require('./Card.js')
 
+var seededCards = [
+  {name: "Pizza Hut",
+    image: "../../assets/churchill.jpg",
+    rating: 3},
+  {name: "Dominoes",
+    image: "../../assets/churchill.jpg",
+    rating: 2},
+  {name: "Papa Johns",
+    image: "../../assets/churchill.jpg",
+    rating: 4},
+  {name: "Cheesy Triangles",
+    image: "../../assets/churchill.jpg",
+    rating: 5},
+]
+
 var {
   StyleSheet,
   Text,
@@ -26,13 +41,19 @@ class CardController extends Modal {
     super(props)
     this.state = {}
     this.allCards = []
+    this.getAllCards()
   }
   getAllCards () {
+    this.allCards = seededCards
+    console.log("ALL: ", this.allCards)
     // this.allCards.push(API CALL)
   }
 
-  fetchNewCard (currentCards) {
-    // if (completed) {
+  fetchNewCard (currentCards, direction) {
+    console.log("HELLOOOOOOO")
+    console.log(currentCards)
+    console.log("Direction: ", direction)
+    // if (thrown) {
     //   var nextCard = new Card(this.allCards.pop())
     //   currentCards.push(this.allCards.pop())
     // }
@@ -43,7 +64,7 @@ class CardController extends Modal {
 
     return (
       <View>
-        <Card></Card>
+        <Card currentCards={currentCards} fetchNewCard={this.fetchNewCard}></Card>
       </View>
     )
   }
