@@ -6,49 +6,23 @@
 import React, {
   AppRegistry,
   Component,
+  NavigatorIOS,
   StyleSheet,
   Text,
   View
 } from 'react-native'
 
-var CardController = require("./ios.js/cards/CardController.js")
+var Dashboard      = require("./ios.js/dashboard/Dashboard.js")
 
 class VentureApp extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <CardController></CardController>
-        <Text style={styles.welcome}>
-          Welcome to Venture!
-        </Text>
-      </View>
+      <NavigatorIOS initialRoute={{
+        title: 'Dashboard',
+        component: Dashboard,
+      }}/>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  cards: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-})
 
 AppRegistry.registerComponent('venture', () => VentureApp);
