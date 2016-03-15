@@ -46,14 +46,7 @@ const styles = StyleSheet.create({
   }
 })
 
-class Dashboard extends Component {
-
-  constructor(props) {
-    super(props)
-    var ds = new ListView.DataSource(
-      {rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      ventures: [
+var ventures = [
                   {
                     id: 1,
                     date: new Date(2016, 1, 15),
@@ -77,33 +70,44 @@ class Dashboard extends Component {
                     pictures: []
                   },
                 ]
-      dataSource: ds.cloneWithRows(this.state.ventures)
+
+class Dashboard extends Component {
+
+  constructor(props) {
+    super(props)
+    var ds = new ListView.DataSource(
+      {rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows(ventures)
     }
   };
 
-  // renderRow(rowData, sectionID, rowID) {
-  //   return (
-  //     <TouchableHighlight>
-  //       <View>
-  //         <View style={styles.separator}/>
-  //         <View style={styles.container}>
-  //           <Text style={styles.text}>{rowData.people[0]}</Text>
-  //           <Text style={styles.text} numberOfLines={1}>{rowData.title}</Text>
-  //         </View>
-  //         <View style={styles.separator}/>
-  //       </View>
-  //     </TouchableHighlight>
-  //   )
-  // };
+  renderRow(rowData, sectionID, rowID) {
+    return (
+      <TouchableHighlight>
+        <View>
+          <View style={styles.separator}/>
+          <View style={styles.container}>
+            <Text style={styles.text}>{rowData.people[0]}</Text>
+            <Text style={styles.text} numberOfLines={1}>{rowData.title}</Text>
+          </View>
+          <View style={styles.separator}/>
+        </View>
+      </TouchableHighlight>
+    )
+  };
+      // <View style={styles.container}>
+      //   <CardController></CardController>
+      //   <Text style={styles.welcome}>
+      //     Welcome to Venture!
+      //   </Text>
+      // </View>
 
   render() {
     return (
-      <View style={styles.container}>
-        <CardController></CardController>
-        <Text style={styles.welcome}>
-          Welcome to Venture!
-        </Text>
-      </View>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow.bind(this)}/>
     )
   };
 
