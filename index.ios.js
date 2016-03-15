@@ -1,8 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict'
+
 import React, {
   AppRegistry,
   Component,
@@ -12,7 +9,7 @@ import React, {
   View
 } from 'react-native'
 
-var Dashboard      = require("./ios.js/dashboard/Dashboard.js")
+var Dashboard = require("./ios.js/dashboard/Dashboard.js")
 
 class VentureApp extends Component {
   render() {
