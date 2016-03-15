@@ -46,39 +46,38 @@ const styles = StyleSheet.create({
   }
 })
 
-
 class Dashboard extends Component {
 
   constructor(props) {
     super(props)
-    this.ventures = [
-                      {
-                        id: 1,
-                        date: new Date(2016, 1, 15),
-                        title: "La's Birthday Party",
-                        people: ["Chad", "Nick", "John"],
-                        location: "The Roosevelt",
-                        time: "15:00",
-                        category: "Food",
-                        reviews: [],
-                        pictures: []
-                      },
-                      {
-                        id: 2,
-                        date: Date.now(),
-                        title: "Chad's Beer Party",
-                        people: ["La", "Nick", "John"],
-                        location: "GA DTLA",
-                        time: "15:00",
-                        category: "Food",
-                        reviews: [],
-                        pictures: []
-                      },
-                    ]
-    var dataSource = new ListView.DataSource(
-      {rowHasChanged: (row1, row2) => row1 !== row2});
+    var ds = new ListView.DataSource(
+      {rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: dataSource.cloneWithRows(this.ventures)
+      ventures: [
+                  {
+                    id: 1,
+                    date: new Date(2016, 1, 15),
+                    title: "La's Birthday Party",
+                    people: ["Chad", "Nick", "John"],
+                    location: "The Roosevelt",
+                    time: "15:00",
+                    category: "Food",
+                    reviews: [],
+                    pictures: []
+                  },
+                  {
+                    id: 2,
+                    date: Date.now(),
+                    title: "Chad's Beer Party",
+                    people: ["La", "Nick", "John"],
+                    location: "GA DTLA",
+                    time: "15:00",
+                    category: "Food",
+                    reviews: [],
+                    pictures: []
+                  },
+                ]
+      dataSource: ds.cloneWithRows(this.state.ventures)
     }
   };
 
@@ -99,13 +98,11 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <View>
-        <View style={styles.container}>
-          <CardController></CardController>
-          <Text style={styles.welcome}>
-            Welcome to Venture!
-          </Text>
-        </View>
+      <View style={styles.container}>
+        <CardController></CardController>
+        <Text style={styles.welcome}>
+          Welcome to Venture!
+        </Text>
       </View>
     )
   };
