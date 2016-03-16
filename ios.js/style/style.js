@@ -8,14 +8,32 @@ module.exports = React.StyleSheet.create({
   },
 
   // DASHBOARD
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
+  dashboardCell: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#000',
+    padding: 10,
+    margin: 10,
   },
-  text: {
+  dashRow: {
+    flexDirection: 'row',
+    paddingVertical: 5,
+  },
+  thumb: {
+    width: 80,
+    height: 80,
+    marginRight: 10
+  },
+  ventureTitle: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: '#48BBEC'
+    color: '#48BBEC',
+  },
+  answerStatus: {
+    left: 225,
+  },
+  reviews: {
+    left: 210,
   },
 
   // CARD

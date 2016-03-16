@@ -4,7 +4,6 @@ var styles         = require('../style/style.js')
 var CardController = require('../cards/CardController.js')
 
 var {
-  StyleSheet,
   Image,
   View,
   TouchableHighlight,
@@ -31,7 +30,7 @@ var ventures = [
                     title: "Chad's Beer Party",
                     people: ["La", "Nick", "John"],
                     location: "GA DTLA",
-                    time: "15:00",
+                    time: "18:00",
                     category: "Food",
                     reviews: [],
                     pictures: []
@@ -53,11 +52,23 @@ class Dashboard extends Component {
     return (
       <TouchableHighlight>
         <View>
-          <View style={styles.container}>
-            <Text style={styles.text}>{rowData.people[0]}</Text>
-            <Text style={styles.text} numberOfLines={1}>{rowData.title}</Text>
+          <View style={styles.dashboardCell}>
+            <View style={styles.dashRow}>
+              <Text>{rowData.time}</Text>
+              <Text style={styles.answerStatus}>Answered?</Text>
+            </View>
+            <View style={styles.dashRow}>
+              <Image style={styles.thumb} source={{ uri: 'http://cdn.skim.gs/image/upload/c_fill,h_96,w_96,dpr_1.0/los-angeles-feature' }} />
+              <View>
+                <Text style={styles.ventureTitle}>{rowData.title}</Text>
+                <Text style={styles.ventureTitle} numberOfLines={1}>@{rowData.location}</Text>
+              </View>
+            </View>
+            <View style={styles.dashRow}>
+              <Text>{rowData.people.length} Invited</Text>
+              <Text style={styles.reviews}>{rowData.reviews.length} Reviews</Text>
+            </View>
           </View>
-          <View style={styles.separator}/>
         </View>
       </TouchableHighlight>
     )
