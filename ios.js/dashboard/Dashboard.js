@@ -1,6 +1,6 @@
 'use strict'
 var React          = require('react-native')
-var styles         = require('../style/style.js')
+var styles         = require("./style/style.js")
 var CardController = require('../cards/CardController.js')
 
 var {
