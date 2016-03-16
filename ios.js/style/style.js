@@ -37,6 +37,12 @@ module.exports = React.StyleSheet.create({
   },
 
   // CARD
+  cardLightBox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -65,12 +71,6 @@ module.exports = React.StyleSheet.create({
   },
 
   // TBD
-  cardContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',

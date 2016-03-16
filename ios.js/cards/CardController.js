@@ -55,12 +55,12 @@ class CardController extends Modal {
     console.log(currentCards)
     console.log("Direction: ", direction)
     //TODO: Set yes vs no based on direction
-    this.addNextCard(currentCards)
+    // this.addNextCard(currentCards)
     console.log(currentCards)
   }
   addNextCard (currentCards) {
-    currentCards.shift()
-    currentCards.push(this.allCards[this.nextCardIndex])
+    // currentCards.shift()
+    // currentCards.push(this.allCards[this.nextCardIndex])
   }
 
   render () {

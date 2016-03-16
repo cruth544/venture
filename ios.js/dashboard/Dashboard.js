@@ -76,16 +76,20 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)}>
-        <View style={styles.container}>
-          <CardController></CardController>
-          <Text style={styles.welcome}>
-            Welcome to Venture!
-          </Text>
-        </View>
-      </ListView>
+      <View>
+        <CardController
+          style={styles.cardLightBox}>
+        </CardController>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow.bind(this)}>
+          <View style={styles.container}>
+            <Text style={styles.welcome}>
+              Welcome to Venture!
+            </Text>
+          </View>
+        </ListView>
+      </View>
     )
   };
 
