@@ -1,8 +1,9 @@
 'use strict'
 
-var React = require('react-native')
+var React      = require('react-native')
 var Dimensions = require('Dimensions')
 var screenSize = Dimensions.get('window')
+var styles     = require("../style/style.js")
 
 var {
   StyleSheet,
@@ -165,32 +166,3 @@ class Card extends Component {
 }
 
 module.exports = Card
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  card: {
-    borderWidth: 3,
-    borderRadius: 12,
-    borderColor: '#000',
-    padding: 10
-  },
-  cardImage: {
-    height: 260,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textLeft: {
-    position: 'absolute',
-    left:0,
-    top:0
-  },
-  textRight: {
-    position: 'absolute',
-    right: 0,
-    top: 0
-  }
-})

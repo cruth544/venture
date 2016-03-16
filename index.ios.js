@@ -9,22 +9,17 @@ import React, {
   View
 } from 'react-native'
 
-var styles = StyleSheet.create({
-  wrapper: {
-    flex: 1
-  }
-})
-
 var Dashboard = require("./ios.js/dashboard/Dashboard.js")
+var styles    = require("./style/style.js")
 
 class VentureApp extends Component {
   render() {
     return (
       <NavigatorIOS
-        style= {styles.wrapper}
+        style={styles.wrapper}
         initialRoute={{
         title: 'Dashboard',
-        component: Dashboard,
+        component: Dashboard
       }}/>
     )
   }

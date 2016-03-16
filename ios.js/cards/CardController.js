@@ -73,9 +73,7 @@ class CardController extends Modal {
 
     return (
       <View>
-        {currentCards.forEach((card) => {
-          return (<Card currentCards={currentCards} cardThrown={this.cardThrown}></Card>)
-        })}
+        <Card currentCards={currentCards} cardThrown={this.cardThrown}></Card>
       </View>
     )
   }

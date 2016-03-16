@@ -1,6 +1,7 @@
 'use strict'
 var React          = require('react-native')
-var CardController = require("../cards/CardController.js")
+var styles         = require('../style/style.js')
+var CardController = require('../cards/CardController.js')
 
 var {
   StyleSheet,
@@ -11,40 +12,6 @@ var {
   Text,
   Component
 } = React
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  cards: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#48BBEC'
-  }
-})
 
 var ventures = [
                   {
@@ -86,7 +53,6 @@ class Dashboard extends Component {
     return (
       <TouchableHighlight>
         <View>
-          <View style={styles.separator}/>
           <View style={styles.container}>
             <Text style={styles.text}>{rowData.people[0]}</Text>
             <Text style={styles.text} numberOfLines={1}>{rowData.title}</Text>
@@ -96,18 +62,19 @@ class Dashboard extends Component {
       </TouchableHighlight>
     )
   };
-      // <View style={styles.container}>
-      //   <CardController></CardController>
-      //   <Text style={styles.welcome}>
-      //     Welcome to Venture!
-      //   </Text>
-      // </View>
 
   render() {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)}/>
+        renderRow={this.renderRow.bind(this)}>
+        <View style={styles.container}>
+          <CardController></CardController>
+          <Text style={styles.welcome}>
+            Welcome to Venture!
+          </Text>
+        </View>
+      </ListView>
     )
   };
 
