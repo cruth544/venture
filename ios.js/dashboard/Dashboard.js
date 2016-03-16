@@ -44,9 +44,17 @@ class Dashboard extends Component {
     var ds = new ListView.DataSource(
       {rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
+      modal: false,
       dataSource: ds.cloneWithRows(ventures)
     }
   };
+
+  openModal() {
+    console.log("OPENNNNN")
+    this.setState({
+      modal: true
+    })
+  }
 
   renderRow(rowData, sectionID, rowID) {
     return (
@@ -74,12 +82,10 @@ class Dashboard extends Component {
     )
   };
 
+
   render() {
     return (
-      <View>
-        <CardController
-          style={styles.cardLightBox}>
-        </CardController>
+      <View style={styles.wrapper}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow.bind(this)}>
@@ -89,6 +95,10 @@ class Dashboard extends Component {
             </Text>
           </View>
         </ListView>
+        <TouchableHighlight onPress={this.openModal.bind(this)}>
+          <Text>Open</Text>
+        </TouchableHighlight>
+        {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
       </View>
     )
   };

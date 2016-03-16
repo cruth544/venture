@@ -25,7 +25,6 @@ var seededCards = [
 ]
 
 var {
-  StyleSheet,
   Text,
   View,
   Image,
@@ -33,6 +32,7 @@ var {
   ActivityIndicatorIOS,
   Navigator,
   TouchableOpacity,
+  TouchableHighlight,
   Animation
 } = React
 
@@ -63,6 +63,13 @@ class CardController extends Modal {
     // currentCards.push(this.allCards[this.nextCardIndex])
   }
 
+  closeModal () {
+    Animated.timing(this.state.offset, {
+      duration: 100,
+      toValue: deviceHeight
+    }).start(this.props.closeModal)
+  }
+
   render () {
     var currentCards = []
     for (var i = 0; i < 3; i++) {
@@ -73,6 +80,9 @@ class CardController extends Modal {
 
     return (
       <View>
+        <TouchableHighlight onPress={this.props.closeModal}>
+          <Text>Close</Text>
+        </TouchableHighlight>
         <Card currentCards={currentCards} cardThrown={this.cardThrown}></Card>
       </View>
     )
