@@ -1,7 +1,6 @@
-const React = require('react-native')
-const { Stylesheet } = React
+var React = require('react-native')
 
-module.exports = StyleSheet.create({
+module.exports = React.StyleSheet.create({
 
   // INDEX.IOS
   wrapper: {

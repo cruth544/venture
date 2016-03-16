@@ -3,7 +3,7 @@
 var React      = require('react-native')
 var Dimensions = require('Dimensions')
 var screenSize = Dimensions.get('window')
-var styles     = require("../style/style.js")
+var styles     = require('../style/style.js')
 
 var {
   StyleSheet,

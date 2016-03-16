@@ -10,7 +10,7 @@ import React, {
 } from 'react-native'
 
 var Dashboard = require("./ios.js/dashboard/Dashboard.js")
-var styles    = require("./style/style.js")
+var styles    = require("./ios.js/style/style.js")
 
 class VentureApp extends Component {
   render() {
