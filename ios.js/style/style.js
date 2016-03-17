@@ -35,6 +35,15 @@ module.exports = React.StyleSheet.create({
   reviews: {
     left: 210,
   },
+  createVenture: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10,
+    width: 60,
+    height: 60,
+    borderRadius: 60,
+    borderWidth: 1,
+  },
 
   // CARD
   cardModal: {

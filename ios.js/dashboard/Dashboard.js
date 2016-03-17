@@ -99,6 +99,11 @@ class Dashboard extends Component {
           <Text>Open</Text>
         </TouchableHighlight>
         {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
+        <TouchableHighlight>
+          <View style={styles.createVenture}>
+            <Text>Create Venture</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     )
   };
