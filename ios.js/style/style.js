@@ -86,3 +86,57 @@ module.exports = React.StyleSheet.create({
   },
 
 })
+
+// const styles = StyleSheet.create({
+//   thumb: {
+//     width: 58,
+//     height: 58,
+//     marginRight: 20,
+//     borderRadius: 29,
+//   },
+//   textContainer: {
+//     flex: 1
+//   },
+//   separator: {
+//     height: 1,
+//     backgroundColor: '#f7f7f7',
+//     borderWidth: 0.1,
+//     borderColor: '#f9f9f9'
+//   },
+//     separator2: {
+//     height: 1,
+//     backgroundColor: '#f7f7f7',
+//     borderWidth: 1,
+//     borderColor: '#f9f9f9',
+//     flex: 2
+//   },
+//   title: {
+//     fontSize: 12,
+//     color: '#656565'
+//   },
+//   rowContainer: {
+//     flexDirection: 'row',
+//     padding: 5,
+//     alignItems: 'center'
+//   },
+//   container: {
+//     flex: 1
+//   },
+//   text: {
+//     fontSize: 17,
+//     color: '#e54747'
+//   },
+//   heading: {
+//     paddingTop: 3,
+//     paddingLeft: 25,
+//     paddingBottom: 3,
+//     fontSize: 15,
+//     color: '#0099ff',
+//     borderColor: '#0099ff',
+//     borderWidth: 0.1,
+//   },
+//   container: {
+//     flexDirection: 'column',
+//     flex: 1
+//   }
+// })

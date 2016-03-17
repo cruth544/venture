@@ -13,29 +13,29 @@ var {
 } = React
 
 var ventures = [
-                  {
-                    id: 1,
-                    date: new Date(2016, 1, 15),
-                    title: "La's Birthday Party",
-                    people: ["Chad", "Nick", "John"],
-                    location: "The Roosevelt",
-                    time: "15:00",
-                    category: "Food",
-                    reviews: [],
-                    pictures: []
-                  },
-                  {
-                    id: 2,
-                    date: Date.now(),
-                    title: "Chad's Beer Party",
-                    people: ["La", "Nick", "John"],
-                    location: "GA DTLA",
-                    time: "18:00",
-                    category: "Food",
-                    reviews: [],
-                    pictures: []
-                  },
-                ]
+  {
+    id: 1,
+    date: new Date(2016, 1, 15),
+    title: "La's Birthday Party",
+    people: ["Chad", "Nick", "John"],
+    location: "The Roosevelt",
+    time: "15:00",
+    category: "Food",
+    reviews: [],
+    pictures: []
+  },
+  {
+    id: 2,
+    date: Date.now(),
+    title: "Chad's Beer Party",
+    people: ["La", "Nick", "John"],
+    location: "GA DTLA",
+    time: "18:00",
+    category: "Food",
+    reviews: [],
+    pictures: []
+  },
+]
 
 class Dashboard extends Component {
 
