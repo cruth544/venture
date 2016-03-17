@@ -67,7 +67,7 @@ class Dashboard extends Component {
               <Text style={styles.answerStatus}>Answered?</Text>
             </View>
             <View style={styles.dashRow}>
-              <Image style={styles.thumb} source={{ uri: 'http://cdn.skim.gs/image/upload/c_fill,h_96,w_96,dpr_1.0/los-angeles-feature' }} />
+              <Image style={styles.ventureThumb} source={{ uri: 'http://cdn.skim.gs/image/upload/c_fill,h_96,w_96,dpr_1.0/los-angeles-feature' }} />
               <View>
                 <Text style={styles.ventureTitle}>{rowData.title}</Text>
                 <Text style={styles.ventureTitle} numberOfLines={1}>@{rowData.location}</Text>
