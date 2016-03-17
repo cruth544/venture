@@ -2,6 +2,7 @@
 var React          = require('react-native')
 var styles         = require('../style/style.js')
 var CardController = require('../cards/CardController.js')
+var Friends        = require('../venture/Friends.js')
 
 var {
   Image,
@@ -54,7 +55,7 @@ class Dashboard extends Component {
     this.setState({
       modal: true
     })
-  }
+  };
 
   renderRow(rowData, sectionID, rowID) {
     return (
@@ -82,6 +83,12 @@ class Dashboard extends Component {
     )
   };
 
+  createVenture() {
+    this.props.navigator.push({
+      title: "Choose Your Friends",
+      component: Friends
+    });
+  }
 
   render() {
     return (
@@ -99,7 +106,7 @@ class Dashboard extends Component {
           <Text>Open</Text>
         </TouchableHighlight>
         {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
-        <TouchableHighlight>
+        <TouchableHighlight onPress={this.createVenture.bind(this)}>
           <View style={styles.createVenture}>
             <Text>Create Venture</Text>
           </View>
