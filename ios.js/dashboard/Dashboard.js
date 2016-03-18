@@ -63,7 +63,7 @@ class Dashboard extends Component {
         <View>
           <View style={styles.dashboardCell}>
             <View style={styles.dashRow}>
-              <Text>{rowData.time}</Text>
+              <Text style={styles.time}>{rowData.time}</Text>
               <Text style={styles.answerStatus}>Answered?</Text>
             </View>
             <View style={styles.dashRow}>
@@ -74,7 +74,7 @@ class Dashboard extends Component {
               </View>
             </View>
             <View style={styles.dashRow}>
-              <Text>{rowData.people.length} Invited</Text>
+              <Text style={styles.invited}>{rowData.people.length} Invited</Text>
               <Text style={styles.reviews}>{rowData.reviews.length} Reviews</Text>
             </View>
           </View>
@@ -93,6 +93,7 @@ class Dashboard extends Component {
   render() {
     return (
       <View style={styles.wrapper}>
+      <View style={styles.separator}/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow.bind(this)}>
@@ -108,7 +109,7 @@ class Dashboard extends Component {
         {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
         <TouchableHighlight onPress={this.createVenture.bind(this)}>
           <View style={styles.createVenture}>
-            <Text>Create Venture</Text>
+            <Text style={styles.newventure}>New!</Text>
           </View>
         </TouchableHighlight>
       </View>

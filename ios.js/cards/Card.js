@@ -156,8 +156,9 @@ class Card extends Component {
     let animatedCardstyles = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity}
 
     return (
-      <Animated.View style={[styles.container, animatedCardstyles]} {...this._panResponder.panHandlers}>
-        <View style={[styles.card, {width: this.state.width}, {height: this.state.height}]}>
+      <Animated.View style={[styles.cardcontainer, animatedCardstyles]} {...this._panResponder.panHandlers}>
+        <View style={[styles.card, {width: 500}, {height: 560}]}>
+
           <Image source={require('../../assets/churchill.jpg')} style={styles.cardImage}/>
         </View>
       </Animated.View>
