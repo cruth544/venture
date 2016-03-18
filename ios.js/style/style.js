@@ -9,11 +9,21 @@ module.exports = React.StyleSheet.create({
 
   // DASHBOARD
   dashboardCell: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#000',
+    // borderWidth: 2,
+    // borderRadius: 5,
+    borderColor: '#e5e5e5',
+    borderBottomWidth: 1,
     padding: 10,
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: -10,
+    height: 160
+  },
+  time: {
+    marginLeft: 10,
+    fontSize: 19,
+    color: 'red',
+    fontFamily: 'arial'
   },
   dashRow: {
     flexDirection: 'row',
@@ -25,15 +35,23 @@ module.exports = React.StyleSheet.create({
     marginRight: 10
   },
   ventureTitle: {
-    fontSize: 25,
+    fontSize: 23,
     fontWeight: 'bold',
     color: '#48BBEC',
+    marginLeft: 5
   },
   answerStatus: {
-    left: 225,
+    left: 200,
+    color: 'green'
+
   },
   reviews: {
     left: 210,
+    color: 'grey',
+  },
+  invited: {
+    color: '#48BBEC',
+    marginLeft: 10
   },
   createVenture: {
     position: 'absolute',
@@ -42,7 +60,14 @@ module.exports = React.StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 60,
-    borderWidth: 1,
+    borderWidth: 3,
+    borderColor: '#f7f2f2',
+    backgroundColor: '#4bdd2a',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  newventure: {
+    color: 'white'
   },
 
   // CARD
@@ -53,9 +78,9 @@ module.exports = React.StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
   },
-  container: {
+  cardcontainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
@@ -64,7 +89,7 @@ module.exports = React.StyleSheet.create({
     borderWidth: 3,
     borderRadius: 12,
     borderColor: '#000',
-    padding: 10
+    padding: 10,
   },
   cardImage: {
     height: 260,
@@ -118,16 +143,17 @@ module.exports = React.StyleSheet.create({
     flex: 1
   },
   text: {
-    fontSize: 17,
+    fontSize: 14,
     color: '#e54747'
   },
   heading: {
+    flexDirection: 'row',
     paddingTop: 3,
     paddingLeft: 25,
     paddingBottom: 3,
-    fontSize: 15,
+    fontSize: 12,
     color: '#0099ff',
-    borderColor: '#0099ff',
+    // borderColor: '#0099ff',
     borderWidth: 0.1,
   },
   container: {
