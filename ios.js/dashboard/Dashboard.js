@@ -74,7 +74,9 @@ class Dashboard extends Component {
               </View>
             </View>
             <View style={styles.dashRow}>
-              <Text>{rowData.people.length} Invited</Text>
+              <TouchableHighlight onPress={}>
+                <Text>{rowData.people.length} Invited</Text>
+              </TouchableHighlight>
               <Text style={styles.reviews}>{rowData.reviews.length} Reviews</Text>
             </View>
           </View>
