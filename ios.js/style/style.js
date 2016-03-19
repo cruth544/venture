@@ -47,7 +47,7 @@ module.exports = React.StyleSheet.create({
     color: 'green'
   },
   reviews: {
-    left: 80,
+    left: 135,
     color: 'grey',
   },
   invited: {
@@ -75,6 +75,9 @@ module.exports = React.StyleSheet.create({
   },
   newventure: {
     color: 'white'
+  },
+  imgRow: {
+    flexDirection: 'row',
   },
 
   // CARD

@@ -3,6 +3,7 @@ var React          = require('react-native')
 var styles         = require('../style/style.js')
 var CardController = require('../cards/CardController.js')
 var Friends        = require('../venture/Friends.js')
+var InvitedFriends = require('../dashboard/InvitedFriends.js')
 
 var {
   Image,
@@ -72,8 +73,8 @@ class Dashboard extends Component {
   };
 
   renderRow(rowData, sectionID, rowID) {
-    var invited = rowData.people.map(function(person){
-      return <Image style={styles.invitedPicture} source={{ uri: person.picture}}/>
+    var invited = rowData.people.map(function(person, i){
+      return <Image style={styles.invitedPicture} key={i} source={{ uri: person.picture}}/>
     })
 
     return (
@@ -92,13 +93,14 @@ class Dashboard extends Component {
               </View>
             </View>
               <View style={styles.BottomRow}>
-              <TouchableHighlight>
+              <TouchableHighlight onPress={this.openModal.bind(this)}>
                 <View>
-                  <Text>{rowData.people.length} Invited</Text>
-                  {invited}
+                  <Text>Invited {rowData.people.length}</Text>
+                  <View style={styles.imgRow}>{invited}</View>
                 </View>
               </TouchableHighlight>
-                <Text style={styles.reviews}>{rowData.reviews.length} Reviews</Text>
+                {this.state.modal ? <InvitedFriends closeModal={() => this.setState({modal: false}) }></InvitedFriends> : null}
+                <Text style={styles.reviews}>Reviews {rowData.reviews.length}</Text>
               </View>
           </View>
         </View>
