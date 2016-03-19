@@ -66,13 +66,16 @@ class Dashboard extends Component {
   };
 
   openModal() {
-    console.log("OPENNNNN")
     this.setState({
       modal: true
     })
   };
 
   renderRow(rowData, sectionID, rowID) {
+    var invited = rowData.people.map(function(person){
+      return <Image style={styles.invitedPicture} source={{ uri: person.picture}}/>
+    })
+
     return (
       <TouchableHighlight>
         <View>
@@ -88,13 +91,15 @@ class Dashboard extends Component {
                 <Text style={styles.ventureTitle} numberOfLines={1}>@{rowData.location}</Text>
               </View>
             </View>
-            <View style={styles.BottomRow}>
-              <Text>{rowData.people.length} Invited</Text>
-              <Image style={styles.invitedPicture} source={{uri: rowData.people[0].picture }} />
-              <Image style={styles.invitedPicture} source={{uri: rowData.people[1].picture }} />
-              <Image style={styles.invitedPicture} source={{uri: rowData.people[2].picture }} />
-              <Text style={styles.reviews}>{rowData.reviews.length} Reviews</Text>
-            </View>
+              <View style={styles.BottomRow}>
+              <TouchableHighlight>
+                <View>
+                  <Text>{rowData.people.length} Invited</Text>
+                  {invited}
+                </View>
+              </TouchableHighlight>
+                <Text style={styles.reviews}>{rowData.reviews.length} Reviews</Text>
+              </View>
           </View>
         </View>
       </TouchableHighlight>
