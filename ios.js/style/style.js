@@ -16,8 +16,6 @@ module.exports = React.StyleSheet.create({
     padding: 10,
     marginLeft: 10,
     marginRight: 10,
-    marginTop: -10,
-    height: 160
   },
   time: {
     marginLeft: 10,
@@ -29,6 +27,10 @@ module.exports = React.StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 5,
   },
+  BottomRow: {
+    flexDirection: 'row',
+    paddingVertical: 10,
+  },
   ventureThumb: {
     width: 80,
     height: 80,
@@ -38,28 +40,33 @@ module.exports = React.StyleSheet.create({
     fontSize: 23,
     fontWeight: 'bold',
     color: '#48BBEC',
-    marginLeft: 5
+    marginLeft: 10
   },
   answerStatus: {
-    left: 200,
+    left: 220,
     color: 'green'
-
   },
   reviews: {
-    left: 210,
+    left: 80,
     color: 'grey',
   },
   invited: {
     color: '#48BBEC',
     marginLeft: 10
   },
+  invitedPicture: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 5,
+  },
   createVenture: {
     position: 'absolute',
     right: 10,
     bottom: 10,
-    width: 60,
-    height: 60,
-    borderRadius: 60,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
     borderWidth: 3,
     borderColor: '#f7f2f2',
     backgroundColor: '#4bdd2a',

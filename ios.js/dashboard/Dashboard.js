@@ -18,7 +18,14 @@ var ventures = [
     id: 1,
     date: new Date(2016, 1, 15),
     title: "La's Birthday Party",
-    people: ["Chad", "Nick", "John"],
+    people: [
+      {name: "Chad",
+       picture: 'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xaf1/t31.0-8/10259230_10152179779379580_958690940902267564_o.jpg'},
+      {name: "Nick",
+       picture: 'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/923477_10202392876877204_972724843_n.jpg?oh=984cb5b274707fc2f5de21b82fc41564&oe=579395EE'},
+      {name: "John",
+       picture: 'https://scontent.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11828779_10206328166376389_2492425211872988089_n.jpg?oh=ff5c5e1c5a9fbb567513734f290cf337&oe=57530ACA'}
+      ],
     location: "The Roosevelt",
     time: "15:00",
     category: "Food",
@@ -29,13 +36,21 @@ var ventures = [
     id: 2,
     date: Date.now(),
     title: "Chad's Beer Party",
-    people: ["La", "Nick", "John"],
+    people: [
+      {name: "Chad",
+       picture: 'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xaf1/t31.0-8/10259230_10152179779379580_958690940902267564_o.jpg'},
+      {name: "Nick",
+       picture: 'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/923477_10202392876877204_972724843_n.jpg?oh=984cb5b274707fc2f5de21b82fc41564&oe=579395EE'},
+      {name: "John",
+       picture: 'https://scontent.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11828779_10206328166376389_2492425211872988089_n.jpg?oh=ff5c5e1c5a9fbb567513734f290cf337&oe=57530ACA'}
+      ],
     location: "GA DTLA",
     time: "18:00",
     category: "Food",
     reviews: [],
     pictures: []
   },
+
 ]
 
 class Dashboard extends Component {
@@ -63,8 +78,8 @@ class Dashboard extends Component {
         <View>
           <View style={styles.dashboardCell}>
             <View style={styles.dashRow}>
-              <Text style={styles.time}>{rowData.time}</Text>
-              <Text style={styles.answerStatus}>Answered?</Text>
+              <Text>{rowData.time}</Text>
+              <Text style={styles.answerStatus}>✔Answered</Text>
             </View>
             <View style={styles.dashRow}>
               <Image style={styles.ventureThumb} source={{ uri: 'http://cdn.skim.gs/image/upload/c_fill,h_96,w_96,dpr_1.0/los-angeles-feature' }} />
@@ -73,10 +88,11 @@ class Dashboard extends Component {
                 <Text style={styles.ventureTitle} numberOfLines={1}>@{rowData.location}</Text>
               </View>
             </View>
-            <View style={styles.dashRow}>
-              <TouchableHighlight onPress={}>
-                <Text>{rowData.people.length} Invited</Text>
-              </TouchableHighlight>
+            <View style={styles.BottomRow}>
+              <Text>{rowData.people.length} Invited</Text>
+              <Image style={styles.invitedPicture} source={{uri: rowData.people[0].picture }} />
+              <Image style={styles.invitedPicture} source={{uri: rowData.people[1].picture }} />
+              <Image style={styles.invitedPicture} source={{uri: rowData.people[2].picture }} />
               <Text style={styles.reviews}>{rowData.reviews.length} Reviews</Text>
             </View>
           </View>
@@ -95,7 +111,6 @@ class Dashboard extends Component {
   render() {
     return (
       <View style={styles.wrapper}>
-      <View style={styles.separator}/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow.bind(this)}>
@@ -111,7 +126,7 @@ class Dashboard extends Component {
         {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
         <TouchableHighlight onPress={this.createVenture.bind(this)}>
           <View style={styles.createVenture}>
-            <Text style={styles.newventure}>New!</Text>
+            <Text>New Venture</Text>
           </View>
         </TouchableHighlight>
       </View>
