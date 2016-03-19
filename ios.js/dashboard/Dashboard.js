@@ -72,6 +72,15 @@ class Dashboard extends Component {
     })
   };
 
+  showInvited(rowData) {
+    // console.log(rowData);
+    this.props.navigator.push({
+      title: rowData.title,
+      component: InvitedFriends,
+      passProps: {rowData}
+    });
+  }
+
   renderRow(rowData, sectionID, rowID) {
     var invited = rowData.people.map(function(person, i){
       return <Image style={styles.invitedPicture} key={i} source={{ uri: person.picture}}/>
@@ -93,13 +102,12 @@ class Dashboard extends Component {
               </View>
             </View>
               <View style={styles.BottomRow}>
-              <TouchableHighlight onPress={this.openModal.bind(this)}>
+              <TouchableHighlight onPress={()=>this.showInvited(rowData)}>
                 <View>
                   <Text>Invited {rowData.people.length}</Text>
                   <View style={styles.imgRow}>{invited}</View>
                 </View>
               </TouchableHighlight>
-                {this.state.modal ? <InvitedFriends closeModal={() => this.setState({modal: false}) }></InvitedFriends> : null}
                 <Text style={styles.reviews}>Reviews {rowData.reviews.length}</Text>
               </View>
           </View>

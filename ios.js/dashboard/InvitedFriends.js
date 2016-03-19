@@ -5,24 +5,19 @@ var styles         = require('../style/style.js')
 var {
   Image,
   View,
-  TouchableHighlight,
-  ListView,
   Text,
   Component
 } = React
 
 class InvitedFriends extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-    }
-  }
-
   render(){
+    // console.log(this.props.rowData)
+    var venture = this.props.rowData
+    var friendsName = venture.people.name
     return (
       <View style={styles.wrapper}>
-        <Text>Hi Everyone</Text>
+        <Text>{friendsName}</Text>
       </View>
     )
   }

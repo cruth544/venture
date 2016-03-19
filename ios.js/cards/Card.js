@@ -6,7 +6,6 @@ var screenSize = Dimensions.get('window')
 var styles     = require('../style/style.js')
 
 var {
-  StyleSheet,
   Text,
   View,
   Image,
