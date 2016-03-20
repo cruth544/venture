@@ -14,10 +14,13 @@ class InvitedFriends extends Component {
   render(){
     // console.log(this.props.rowData)
     var venture = this.props.rowData
-    var friendsName = venture.people.name
+    var friends = venture.people.map(function(friend, i){
+      return <Text key={i}>{friend.name}</Text>
+    })
+    console.log(friends);
     return (
       <View style={styles.wrapper}>
-        <Text>{friendsName}</Text>
+        {friends}
       </View>
     )
   }
