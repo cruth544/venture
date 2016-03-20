@@ -1,7 +1,8 @@
 'use strict';
-var React   = require('react-native');
-var styles  = require('../style/style.js');
-
+var React        = require('react-native');
+var styles       = require('../style/style.js');
+var ItemCheckBox = require('react-native-item-checkbox');
+// var Icon         = require('react-native-icons');
 var {
   AppRegistry,
   StyleSheet,
@@ -81,6 +82,9 @@ class Friends extends Component {
               <View style={styles.textContainer}>
               <Text style={styles.text}>{rowData.name}</Text>
               </View>
+
+              <View style={styles.checkbox}><ItemCheckBox/>
+              </View>
           </View>
           <View style={styles.separator2}/>
         </View>
@@ -91,15 +95,13 @@ class Friends extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <View style={styles.separator}/>
       <Text style={styles.heading}>Favorites</Text>
-      <View style={styles.separator}/>
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderRow.bind(this)} />
-        <View style={styles.separator}/>
-      <Text style={styles.heading}>Friends</Text>
-      <View style={styles.separator}/>
+
+      <Text style={styles.heading2}>Friends</Text>
+
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderRow.bind(this)} />

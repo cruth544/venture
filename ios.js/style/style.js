@@ -147,17 +147,33 @@ module.exports = React.StyleSheet.create({
     color: '#e54747'
   },
   heading: {
-    flexDirection: 'row',
-    paddingTop: 3,
+    // flexDirection: 'row',
+    paddingTop: 5,
+    marginTop: 63,
     paddingLeft: 25,
     paddingBottom: 3,
     fontSize: 12,
     color: '#0099ff',
+    backgroundColor: '#eaeaea',
+    // borderColor: '#0099ff',
+    borderWidth: 0.1,
+  },
+    heading2: {
+    // flexDirection: 'row',
+    paddingTop: 5,
+    paddingLeft: 25,
+    paddingBottom: 3,
+    fontSize: 12,
+    color: '#0099ff',
+    backgroundColor: '#eaeaea',
     // borderColor: '#0099ff',
     borderWidth: 0.1,
   },
   container: {
     flexDirection: 'column',
     flex: 1
+  },
+  checkbox: {
+
   }
 })
