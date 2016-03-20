@@ -8,19 +8,20 @@ var screenSize = Dimensions.get('window')
 
 // Custom Classes
 var Card = require('./Card.js')
+var styles         = require('../style/style.js')
 
 var seededCards = [
   {name: "Pizza Hut",
-    image: "../../assets/churchill.jpg",
+    image: require("image!pizza-hut"),
     rating: 3},
-  {name: "Dominoes",
-    image: "../../assets/churchill.jpg",
+  {name: "Dominos",
+    image: require("image!dominos"),
     rating: 2},
   {name: "Papa Johns",
-    image: "../../assets/churchill.jpg",
+    image: require("image!papa-johns"),
     rating: 4},
   {name: "Cheesy Triangles",
-    image: "../../assets/churchill.jpg",
+    image: require("image!churchill"),
     rating: 5},
 ]
 
@@ -41,6 +42,7 @@ class CardController extends Modal {
     super(props)
     this.state = {}
     this.allCards = []
+    this.currentCards = []
     this.nextCardIndex = 0
     this.getAllCards()
   }
@@ -50,13 +52,13 @@ class CardController extends Modal {
     // this.allCards.push(API CALL)
   }
 
-  cardThrown (currentCards, direction) {
+  cardThrown (cardThrown, direction) {
     console.log("HELLOOOOOOO")
-    console.log(currentCards)
+    console.log(cardThrown)
     console.log("Direction: ", direction)
     //TODO: Set yes vs no based on direction
     // this.addNextCard(currentCards)
-    console.log(currentCards)
+    console.log(cardThrown)
   }
   addNextCard (currentCards) {
     // currentCards.shift()
@@ -71,19 +73,22 @@ class CardController extends Modal {
   }
 
   render () {
-    var currentCards = []
-    for (var i = 0; i < 3; i++) {
-      currentCards.push(this.allCards[this.nextCardIndex])
+    for (var i = 0; i < 2; i++) {
+      this.currentCards.push(this.allCards[this.nextCardIndex])
       this.nextCardIndex++
     }
-    console.log(currentCards)
+    console.log("CURRENT CARDS: ", this.currentCards)
+    var cardStack = this.currentCards.map((card, i) => {
+      return (<Card key={i} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
+    })
+    console.log("CARD STACK: ", cardStack)
 
     return (
-      <View>
+      <View style={styles.cardController}>
         <TouchableHighlight onPress={this.props.closeModal}>
           <Text>Close</Text>
         </TouchableHighlight>
-        <Card currentCards={currentCards} cardThrown={this.cardThrown}></Card>
+        {cardStack}
       </View>
     )
   }

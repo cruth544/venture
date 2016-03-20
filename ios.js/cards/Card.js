@@ -69,6 +69,7 @@ class Card extends Component {
       // },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, {vx, vy}) => {
+        console.log("NAME: ", this.props.cardInfo.name)
         function clamp(value, a, b) {
           if (value > a && value < b) return value
           if (value < a) return a
@@ -91,15 +92,10 @@ class Card extends Component {
             ? direction = 'right'
             : direction = 'left'
 
-          this.props.cardThrown(this.props.currentCards, direction)
-          // this.props.cardRemoved
-          //   ? this.props.cardRemoved(this.props.cards.indexOf(this.state.card))
-          //   : null
-
           Animated.decay(this.state.pan, {
             velocity: {x: velocity, y: vy},
             deceleration: 0.98
-          }).start(this._resetState.bind(this))
+          }).start(this._removeCard.bind(this, direction))
         } else {
           Animated.spring(this.state.pan, {
             toValue: {x: 0, y: 0},
@@ -120,9 +116,18 @@ class Card extends Component {
   }
   _resetState() {
     this.state.pan.setValue({x: 0, y: 0})
-    this.state.enter.setValue(0)
+    // this.state.enter.setValue(0)
     // this._goToNextCard();
     // this._animateEntrance();
+  }
+
+  _removeCard(direction) {
+    this.props.cardThrown(this, direction)
+    console.log("REMOVING")
+    // this.props.cardRemoved
+    //   ? this.props.cardRemoved(this.props.cards.indexOf(this.state.card))
+    //   : null
+    delete this
   }
 
 
@@ -154,11 +159,13 @@ class Card extends Component {
 
     let animatedCardstyles = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity}
 
+    console.log(this.props)
+
     return (
       <Animated.View style={[styles.cardcontainer, animatedCardstyles]} {...this._panResponder.panHandlers}>
         <View style={[styles.card, {width: 500}, {height: 560}]}>
 
-          <Image source={require('../../assets/churchill.jpg')} style={styles.cardImage}/>
+          <Image source={this.props.cardInfo.image} style={styles.cardImage}/>
         </View>
       </Animated.View>
     )
