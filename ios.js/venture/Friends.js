@@ -1,6 +1,7 @@
 'use strict';
 var React   = require('react-native');
 var styles  = require('../style/style.js');
+var Details = require('./Details.js')
 
 var {
   AppRegistry,
@@ -69,6 +70,14 @@ class Friends extends Component {
     this.state = {
       dataSource: dataSource.cloneWithRows(friend)
     }
+  }
+
+  rowPressed(friend) {
+    this.props.navigator.push({
+      title: "Enter Venture Details",
+      component: Details,
+      passProps: {friend}
+    });
   }
 
   renderRow(rowData, sectionID, rowID) {
