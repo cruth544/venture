@@ -30,6 +30,7 @@ var ventures = [
     location: "The Roosevelt",
     time: "15:00",
     category: "Food",
+    answered: true,
     reviews: [],
     pictures: []
   },
@@ -48,6 +49,7 @@ var ventures = [
     location: "GA DTLA",
     time: "18:00",
     category: "Food",
+    answered: false,
     reviews: [],
     pictures: []
   },
@@ -81,18 +83,31 @@ class Dashboard extends Component {
     });
   }
 
+  handlePress(rowData) {
+    if(rowData.answered) {
+      this.showInvited(rowData)
+    } else {
+      this.openModal()
+    }
+  }
+
   renderRow(rowData, sectionID, rowID) {
+
     var invited = rowData.people.map(function(person, i){
       return <Image style={styles.invitedPicture} key={i} source={{ uri: person.picture}}/>
     })
 
+    var checkStatus = function(rowData) {
+      if (rowData.answered) return <Text style={styles.answerStatus}>✔Answered</Text>
+    }
+
     return (
-      <TouchableHighlight>
+      <TouchableHighlight onPress={()=>this.handlePress(rowData)}>
         <View>
           <View style={styles.dashboardCell}>
             <View style={styles.dashRow}>
               <Text>{rowData.time}</Text>
-              <Text style={styles.answerStatus}>✔Answered</Text>
+              {checkStatus(rowData)}
             </View>
             <View style={styles.dashRow}>
               <Image style={styles.ventureThumb} source={{ uri: 'http://cdn.skim.gs/image/upload/c_fill,h_96,w_96,dpr_1.0/los-angeles-feature' }} />
@@ -102,12 +117,10 @@ class Dashboard extends Component {
               </View>
             </View>
               <View style={styles.BottomRow}>
-              <TouchableHighlight onPress={()=>this.showInvited(rowData)}>
                 <View>
                   <Text>Invited {rowData.people.length}</Text>
                   <View style={styles.imgRow}>{invited}</View>
                 </View>
-              </TouchableHighlight>
                 <Text style={styles.reviews}>Reviews {rowData.reviews.length}</Text>
               </View>
           </View>
@@ -135,9 +148,6 @@ class Dashboard extends Component {
             </Text>
           </View>
         </ListView>
-        <TouchableHighlight onPress={this.openModal.bind(this)}>
-          <Text>Open</Text>
-        </TouchableHighlight>
         <TouchableHighlight onPress={this.createVenture.bind(this)}>
         <View style={styles.createVenture}>
         <Text>New Venture</Text>
