@@ -87,8 +87,6 @@ module.exports = React.StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     position: 'absolute',
-    // width: 100,
-    // height: 100,
     top: 0,
     left: 0,
     bottom: 0,
@@ -96,7 +94,8 @@ module.exports = React.StyleSheet.create({
   },
   closeButton: {
     position: 'relative',
-    top: 0,
+    backgroundColor: 'rgba(255,255,255,1)',
+    bottom: 0,
     left: 0,
   },
   cardcontainer: {
