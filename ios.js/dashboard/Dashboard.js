@@ -138,12 +138,12 @@ class Dashboard extends Component {
         <TouchableHighlight onPress={this.openModal.bind(this)}>
           <Text>Open</Text>
         </TouchableHighlight>
-        {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
         <TouchableHighlight onPress={this.createVenture.bind(this)}>
-          <View style={styles.createVenture}>
-            <Text>New Venture</Text>
-          </View>
+        <View style={styles.createVenture}>
+        <Text>New Venture</Text>
+        </View>
         </TouchableHighlight>
+        {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
       </View>
     )
   };

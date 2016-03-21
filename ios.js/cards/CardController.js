@@ -34,7 +34,8 @@ var {
   Navigator,
   TouchableOpacity,
   TouchableHighlight,
-  Animation
+  Animated,
+  Dimensions
 } = React
 
 class CardController extends Modal {
@@ -58,7 +59,12 @@ class CardController extends Modal {
     console.log("Direction: ", direction)
     //TODO: Set yes vs no based on direction
     // this.addNextCard(currentCards)
-    console.log(cardThrown)
+    var cardIndex = this.allCards.indexOf(cardThrown.props.cardInfo)
+    this.allCards[cardIndex] = null
+    console.log("INDEX: ", cardIndex)
+    if (!this.allCards[this.allCards.length - 1]) {
+      this.closeModal()
+    }
   }
   addNextCard (currentCards) {
     // currentCards.shift()
@@ -68,13 +74,13 @@ class CardController extends Modal {
   closeModal () {
     Animated.timing(this.state.offset, {
       duration: 100,
-      toValue: deviceHeight
+      toValue: screenSize.height
     }).start(this.props.closeModal)
   }
 
   render () {
-    for (var i = 0; i < 2; i++) {
-      this.currentCards.push(this.allCards[this.nextCardIndex])
+    for (var i = 0; i < this.allCards.length; i++) {
+      this.currentCards.unshift(this.allCards[this.nextCardIndex])
       this.nextCardIndex++
     }
     console.log("CURRENT CARDS: ", this.currentCards)

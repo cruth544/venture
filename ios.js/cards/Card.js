@@ -122,12 +122,12 @@ class Card extends Component {
   }
 
   _removeCard(direction) {
+    this.state.pan.setValue({x: screenSize.width, y: screenSize.height})
+    console.log("REMOVING: ", screenSize.height)
     this.props.cardThrown(this, direction)
-    console.log("REMOVING")
     // this.props.cardRemoved
     //   ? this.props.cardRemoved(this.props.cards.indexOf(this.state.card))
     //   : null
-    delete this
   }
 
 
