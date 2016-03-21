@@ -2,7 +2,8 @@
 var React        = require('react-native');
 var styles       = require('../style/style.js');
 var ItemCheckBox = require('react-native-item-checkbox');
-// var Icon         = require('react-native-icons');
+var CheckBox     = require('react-native-checkbox');
+var Icon         = require('react-native-icons');
 var {
   AppRegistry,
   StyleSheet,
@@ -83,8 +84,14 @@ class Friends extends Component {
               <Text style={styles.text}>{rowData.name}</Text>
               </View>
 
-              <View style={styles.checkbox}><ItemCheckBox/>
-              </View>
+
+
+            <CheckBox
+              label = ''
+              checked={true}
+              // labelStyle = {styles.check}
+              onChange={(checked) => console.log('I am checked', checked = {false})}
+            />
           </View>
           <View style={styles.separator2}/>
         </View>
@@ -95,7 +102,9 @@ class Friends extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <View>
       <Text style={styles.heading}>Favorites</Text>
+      </View>
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderRow.bind(this)} />

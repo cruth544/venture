@@ -86,7 +86,7 @@ class Dashboard extends Component {
   createVenture() {
     this.props.navigator.push({
       title: "Choose Your Friends",
-      component: Friends
+      component: Friends,
     });
   }
 

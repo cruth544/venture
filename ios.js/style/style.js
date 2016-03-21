@@ -147,9 +147,11 @@ module.exports = React.StyleSheet.create({
     color: '#e54747'
   },
   heading: {
-    // flexDirection: 'row',
+    flexDirection: 'row',
+    flex: 1,
     paddingTop: 5,
-    marginTop: 63,
+    // marginTop: 10,
+    position: 'absolute',
     paddingLeft: 25,
     paddingBottom: 3,
     fontSize: 12,
@@ -173,7 +175,4 @@ module.exports = React.StyleSheet.create({
     flexDirection: 'column',
     flex: 1
   },
-  checkbox: {
-
-  }
 })
