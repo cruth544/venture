@@ -30,7 +30,7 @@ var ventures = [
     location: "The Roosevelt",
     time: "15:00",
     category: "Food",
-    answered: true,
+    answered: 1,
     reviews: [],
     pictures: []
   },
@@ -49,7 +49,21 @@ var ventures = [
     location: "GA DTLA",
     time: "18:00",
     category: "Food",
-    answered: false,
+    answered: 0,
+    choices: [
+      {name: "Papa Johns",
+        image: require("image!papa-johns"),
+        rating: 4},
+      {name: "Mickey",
+        image: require("image!mickey"),
+        rating: 3},
+      {name: "Dominos",
+        image: require("image!dominos"),
+        rating: 2},
+      {name: "Cheesy Triangles",
+        image: require("image!churchill"),
+        rating: 5},
+    ],
     reviews: [],
     pictures: []
   },
@@ -68,7 +82,9 @@ class Dashboard extends Component {
     }
   };
 
-  openModal() {
+  openModal(choices) {
+    console.log("CHOICES: ", choices)
+    this.passedCards = choices
     this.setState({
       modal: true
     })
@@ -84,10 +100,11 @@ class Dashboard extends Component {
   }
 
   handlePress(rowData) {
-    if(rowData.answered) {
+    if(rowData.answered > 0) {
       this.showInvited(rowData)
     } else {
-      this.openModal()
+      var choices = rowData.choices
+      this.openModal(choices)
     }
   }
 
@@ -155,7 +172,7 @@ class Dashboard extends Component {
         </TouchableHighlight>
 
         {/* CardController must ALWAYS be at the bottom */}
-        {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
+        {this.state.modal ? <CardController cards={this.passedCards} closeModal={() => this.setState({modal: false}) }></CardController> : null}
       </View>
     )
   };
