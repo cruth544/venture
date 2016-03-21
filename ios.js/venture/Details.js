@@ -44,15 +44,19 @@ var {
 
 class CreateDetails extends Component {
 
+  save(){
+    this.props.navigator.popToTop({
+    });
+  }
+
   render(){
     return (
       <View style={styles.detailsContainer}>
         <Form
           ref="form"
           type={Event}
-          options={options}
-        />
-        <TouchableHighlight style={styles.detailsButton} onPress={this.onPress} underlayColor='#99d9f4'>
+          options={options}/>
+        <TouchableHighlight style={styles.detailsButton} onPress={this.save.bind(this)} underlayColor='#99d9f4'>
           <Text style={styles.detailsButtonText}>Save</Text>
         </TouchableHighlight>
       </View>
