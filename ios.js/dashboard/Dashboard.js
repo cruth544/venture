@@ -143,6 +143,8 @@ class Dashboard extends Component {
         <Text>New Venture</Text>
         </View>
         </TouchableHighlight>
+
+        {/* CardController must ALWAYS be at the bottom */}
         {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
       </View>
     )

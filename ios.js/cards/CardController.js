@@ -45,7 +45,6 @@ var {
 class CardController extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
     this.allCards = []
     this.currentCards = []
     this.nextCardIndex = 0
@@ -56,6 +55,7 @@ class CardController extends Component {
   }
   getAllCards () {
     this.allCards = seededCards
+    this.nextCardIndex = 0
     console.log("ALL: ", this.allCards)
     // this.allCards.push(API CALL)
   }

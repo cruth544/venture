@@ -95,7 +95,7 @@ class Card extends Component {
           Animated.decay(this.state.pan, {
             velocity: {x: velocity, y: vy},
             deceleration: 0.98
-          }).start(this._resetState.bind(this, direction))
+          }).start(this._removeCard.bind(this, direction))
         } else {
           Animated.spring(this.state.pan, {
             toValue: {x: 0, y: 0},
