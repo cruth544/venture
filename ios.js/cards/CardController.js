@@ -10,9 +10,9 @@ var Card = require('./Card.js')
 var styles         = require('../style/style.js')
 
 var seededCards = [
-  {name: "Pizza Hut",
-    image: require("image!pizza-hut"),
-    rating: 3},
+  {name: "Mickey",
+        image: require("image!mickey"),
+        rating: 3},
   {name: "Dominos",
     image: require("image!dominos"),
     rating: 2},
@@ -43,6 +43,7 @@ var {
 
 class CardController extends Component {
   constructor(props) {
+    console.log("CARD CONTROLLER CREATED")
     super(props)
     this.allCards = []
     this.currentCards = []
@@ -53,7 +54,7 @@ class CardController extends Component {
     }
   }
   getAllCards () {
-    this.allCards = seededCards
+    this.allCards = this.props.cards
     this.nextCardIndex = 0
     console.log("ALL: ", this.allCards)
     // this.allCards.push(API CALL)

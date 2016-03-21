@@ -30,6 +30,7 @@ var ventures = [
     location: "The Roosevelt",
     time: "15:00",
     category: "Food",
+    answered: 1,
     reviews: [],
     pictures: []
   },
@@ -48,6 +49,21 @@ var ventures = [
     location: "GA DTLA",
     time: "18:00",
     category: "Food",
+    answered: 0,
+    choices: [
+      {name: "Papa Johns",
+        image: require("image!papa-johns"),
+        rating: 4},
+      {name: "Mickey",
+        image: require("image!mickey"),
+        rating: 3},
+      {name: "Dominos",
+        image: require("image!dominos"),
+        rating: 2},
+      {name: "Cheesy Triangles",
+        image: require("image!churchill"),
+        rating: 5},
+    ],
     reviews: [],
     pictures: []
   },
@@ -104,7 +120,9 @@ class Dashboard extends Component {
     console.log("VENTURES: ", ventures)
   }
 
-  openModal() {
+  openModal(choices) {
+    console.log("CHOICES: ", choices)
+    this.passedCards = choices
     this.setState({
       modal: true
     })
@@ -119,21 +137,33 @@ class Dashboard extends Component {
     });
   }
 
+  handlePress(rowData) {
+    if(rowData.answered > 0) {
+      this.showInvited(rowData)
+    } else {
+      var choices = rowData.choices
+      this.openModal(choices)
+    }
+  }
+
   renderRow(rowData, sectionID, rowID) {
-    console.log("ROW: ", rowData)
     var invited = rowData.people.map(function(person, i){
       if (person) {
         return <Image style={styles.invitedPicture} key={i} source={{ uri: person.picture}}/>
       }
     })
 
+    var checkStatus = function(rowData) {
+      if (rowData.answered) return <Text style={styles.answerStatus}>✔Answered</Text>
+    }
+
     return (
-      <TouchableHighlight>
+      <TouchableHighlight onPress={()=>this.handlePress(rowData)}>
         <View>
           <View style={styles.dashboardCell}>
             <View style={styles.dashRow}>
               <Text>{rowData.time}</Text>
-              <Text style={styles.answerStatus}>✔Answered</Text>
+              {checkStatus(rowData)}
             </View>
             <View style={styles.dashRow}>
               <Image style={styles.ventureThumb} source={{ uri: 'http://cdn.skim.gs/image/upload/c_fill,h_96,w_96,dpr_1.0/los-angeles-feature' }} />
@@ -143,12 +173,10 @@ class Dashboard extends Component {
               </View>
             </View>
               <View style={styles.BottomRow}>
-              <TouchableHighlight onPress={()=>this.showInvited(rowData)}>
                 <View>
                   <Text>Invited {rowData.people.length}</Text>
                   <View style={styles.imgRow}>{invited}</View>
                 </View>
-              </TouchableHighlight>
                 <Text style={styles.reviews}>Reviews {rowData.reviews.length}</Text>
               </View>
           </View>
@@ -180,9 +208,6 @@ class Dashboard extends Component {
             </Text>
           </View>
         </ListView>
-        <TouchableHighlight onPress={this.openModal.bind(this)}>
-          <Text>Open</Text>
-        </TouchableHighlight>
         <TouchableHighlight onPress={this.createVenture.bind(this)}>
         <View style={styles.createVenture}>
         <Text>New Venture</Text>
@@ -190,7 +215,7 @@ class Dashboard extends Component {
         </TouchableHighlight>
 
         {/* CardController must ALWAYS be at the bottom */}
-        {this.state.modal ? <CardController closeModal={() => this.setState({modal: false}) }></CardController> : null}
+        {this.state.modal ? <CardController cards={this.passedCards} closeModal={() => this.setState({modal: false}) }></CardController> : null}
       </View>
     )
   };
