@@ -45,7 +45,12 @@ var {
 class CreateDetails extends Component {
 
   save(){
+    console.log(this.props.venture)
+    window.venture = this.props.venture
     this.props.navigator.popToTop({
+      passProps: {
+        venture: this.props.venture
+      }
     });
   }
 

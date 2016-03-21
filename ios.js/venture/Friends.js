@@ -72,17 +72,22 @@ class Friends extends Component {
     }
   }
 
-  rowPressed(friend) {
+  rowPressed(friend, venture) {
+    console.log("FRIEND: ", friend)
+    venture.people.push(friend)
     this.props.navigator.push({
       title: "Enter Venture Details",
       component: Details,
-      passProps: {friend}
-    });
+      passProps: {
+        friend: friend,
+        venture: venture
+      }
+    })
   }
 
   renderRow(rowData, sectionID, rowID) {
     return (
-      <TouchableHighlight onPress={() => this.rowPressed(rowData.friend)}
+      <TouchableHighlight onPress={() => this.rowPressed(rowData.friend, this.props.venture)}
           underlayColor='#dddddd'>
         <View>
           <View style={styles.rowContainer}>

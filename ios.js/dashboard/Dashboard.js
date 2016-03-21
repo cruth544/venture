@@ -54,6 +54,24 @@ var ventures = [
 
 ]
 
+class VentureEvent {
+  constructor(id, date, title, location, time, category) {
+    // To be set later (because La wants it named like that)
+    this.answered = 0
+    this.reviews = []
+    this.pictures = []
+    this.people = []
+
+    // Touchable Values
+    this.id = id
+    this.date = date
+    this.title = title
+    this.location = location
+    this.time = time
+    this.category = category
+  }
+}
+
 class Dashboard extends Component {
 
   constructor(props) {
@@ -64,7 +82,27 @@ class Dashboard extends Component {
       modal: false,
       dataSource: ds.cloneWithRows(ventures)
     }
-  };
+  }
+
+  // updateRowsWith(newRow) {
+  //   var ds = new ListView.DataSource(
+  //     {rowHasChanged:}
+  //   )
+  // }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("PROPS: ", nextProps)
+    console.log("WINDOW: ", window.venture)
+    if (window.venture) {
+      if (ventures.indexOf(window.venture) < 0) {
+        ventures.push(window.venture)
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(ventures)
+        })
+      }
+    }
+    console.log("VENTURES: ", ventures)
+  }
 
   openModal() {
     this.setState({
@@ -82,8 +120,11 @@ class Dashboard extends Component {
   }
 
   renderRow(rowData, sectionID, rowID) {
+    console.log("ROW: ", rowData)
     var invited = rowData.people.map(function(person, i){
-      return <Image style={styles.invitedPicture} key={i} source={{ uri: person.picture}}/>
+      if (person) {
+        return <Image style={styles.invitedPicture} key={i} source={{ uri: person.picture}}/>
+      }
     })
 
     return (
@@ -119,7 +160,11 @@ class Dashboard extends Component {
   createVenture() {
     this.props.navigator.push({
       title: "Choose Your Friends",
-      component: Friends
+      component: Friends,
+      passProps: {
+        venture: new VentureEvent(
+          3, new Date(2016, 3, 15), "John's Dunken Brawl", "Diamond Bar", "18:00", "drinks")
+      }
     });
   }
 

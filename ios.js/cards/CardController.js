@@ -1,6 +1,5 @@
 'use strict'
 
-
 // Imports
 var React = require('react-native')
 var Dimensions = require('Dimensions')
