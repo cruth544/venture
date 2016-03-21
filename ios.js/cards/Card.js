@@ -26,13 +26,14 @@ class Card extends Component {
     this.state = {
       x: 0,
       y: 0,
-      width: props.width ?
-        props.width : (screenSize.width * props.width) * screenSize.scale,
-      height: props.height ?
-        props.height : (screenSize.height * props.height) * screenSize.scale,
+      // width: props.width ?
+      //   props.width : (screenSize.width * props.width) * screenSize.scale,
+      // height: props.height ?
+      //   props.height : (screenSize.height * props.height) * screenSize.scale,
       pan: new Animated.ValueXY(),
       enter: new Animated.Value(0.5)
     }
+    this.state.cardInfo = this.props.cardInfo
   }
 
   // Pan Handler
@@ -69,7 +70,7 @@ class Card extends Component {
       // },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, {vx, vy}) => {
-        console.log("NAME: ", this.props.cardInfo.name)
+        console.log("NAME: ", this.state.cardInfo.name)
         function clamp(value, a, b) {
           if (value > a && value < b) return value
           if (value < a) return a
@@ -95,7 +96,7 @@ class Card extends Component {
           Animated.decay(this.state.pan, {
             velocity: {x: velocity, y: vy},
             deceleration: 0.98
-          }).start(this._removeCard.bind(this, direction))
+          }).start(this._resetState.bind(this, direction))
         } else {
           Animated.spring(this.state.pan, {
             toValue: {x: 0, y: 0},
@@ -114,11 +115,21 @@ class Card extends Component {
       },
     })
   }
+
+  _animateEntrance(firstCard) {
+    Animated.spring(
+      this.state.enter,
+      { toValue: 1, friction: 8 }
+    ).start();
+  }
+
   _resetState() {
     this.state.pan.setValue({x: 0, y: 0})
-    // this.state.enter.setValue(0)
+    this.state.enter.setValue(0)
     // this._goToNextCard();
-    // this._animateEntrance();
+    console.log("CARD: ", this.state.cardInfo)
+    this.state.cardInfo = this.props.setCardData()
+    this._animateEntrance();
   }
 
   _removeCard(direction) {
@@ -129,7 +140,6 @@ class Card extends Component {
     //   : null
     delete this
   }
-
 
   getRotationDegree (rotateTop, x) {
     var rotation = x / screenSize.width * 100 / 3
@@ -164,8 +174,8 @@ class Card extends Component {
     return (
       <Animated.View style={[styles.cardcontainer, animatedCardstyles]} {...this._panResponder.panHandlers}>
         <View style={[styles.card, {width: 500}, {height: 560}]}>
-
-          <Image source={this.props.cardInfo.image} style={styles.cardImage}/>
+          <Text>{this.state.cardInfo.name}</Text>
+          <Image source={this.state.cardInfo.image} style={styles.cardImage}/>
         </View>
       </Animated.View>
     )

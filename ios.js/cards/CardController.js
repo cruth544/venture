@@ -42,9 +42,9 @@ class CardController extends Modal {
     super(props)
     this.state = {}
     this.allCards = []
-    this.currentCards = []
-    this.nextCardIndex = 0
     this.getAllCards()
+    this.currentCard = {}
+    this.nextCardIndex = 0
   }
   getAllCards () {
     this.allCards = seededCards
@@ -60,6 +60,21 @@ class CardController extends Modal {
     // this.addNextCard(currentCards)
     console.log(cardThrown)
   }
+  getNextCard () {
+    var nextCard = this.allCards[this.nextCardIndex]
+    this.nextCardIndex++
+    if (this.nextCardIndex >= this.allCards.length) {
+      return this.closeModal()
+    }
+    return nextCard
+  }
+  setCardData () {
+    var nextCard = this.allCards[this.nextCardIndex]
+    this.nextCardIndex++
+    this.currentCard = nextCard
+    console.log(nextCard)
+    return this.currentCard
+  }
   addNextCard (currentCards) {
     // currentCards.shift()
     // currentCards.push(this.allCards[this.nextCardIndex])
@@ -72,23 +87,25 @@ class CardController extends Modal {
     }).start(this.props.closeModal)
   }
 
+
   render () {
-    for (var i = 0; i < 2; i++) {
-      this.currentCards.push(this.allCards[this.nextCardIndex])
-      this.nextCardIndex++
-    }
-    console.log("CURRENT CARDS: ", this.currentCards)
-    var cardStack = this.currentCards.map((card, i) => {
-      return (<Card key={i} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
-    })
-    console.log("CARD STACK: ", cardStack)
+    // for (var i = 0; i < 2; i++) {
+    //   this.currentCards.push(this.allCards[this.nextCardIndex])
+    //   this.nextCardIndex++
+    // }
+    // console.log("CURRENT CARDS: ", this.currentCards)
+    // var cardStack = this.currentCards.map((card, i) => {
+    //   return (<Card key={i} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
+    // })
+    // console.log("CARD STACK: ", cardStack)
 
     return (
       <View style={styles.cardController}>
-        <TouchableHighlight onPress={this.props.closeModal}>
-          <Text>Close</Text>
-        </TouchableHighlight>
-        {cardStack}
+        <Card
+          cardInfo={this.allCards[0]}
+          cardThrown={this.cardThrown.bind(this)}
+          setCardData={this.setCardData.bind(this)}>
+        </Card>
       </View>
     )
   }
