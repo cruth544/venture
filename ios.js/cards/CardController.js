@@ -13,16 +13,16 @@ var styles         = require('../style/style.js')
 var seededCards = [
   {name: "Pizza Hut",
     image: require("image!pizza-hut"),
-    rating: 3},
+    rating: 3, location: "1234 Something St. Los Angeles, CA 900123", description: "Greasy, deep-dish Pizza... Mm~"},
   {name: "Dominos",
     image: require("image!dominos"),
-    rating: 2},
+    rating: 2, location: "1234 Something St. Los Angeles, CA 900123", description: "Nasty, ugly-ass Pizza. Blech."},
   {name: "Papa Johns",
     image: require("image!papa-johns"),
-    rating: 4},
+    rating: 4, location: "1234 Something St. Los Angeles, CA 900123", description: "Greaseless pizza, but that GARLIC SAUCE MM"},
   {name: "Cheesy Triangles",
     image: require("image!churchill"),
-    rating: 5},
+    rating: 5, location: "1234 Something St. Los Angeles, CA 900123", description: "Magical triangles that don't do nothing for nobody."},
 ]
 
 var {
