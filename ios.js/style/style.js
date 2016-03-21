@@ -7,8 +7,6 @@ module.exports = React.StyleSheet.create({
     flex: 1
   },
 
-
-
   // DASHBOARD
   dashboardCell: {
     // borderWidth: 2,
@@ -82,17 +80,23 @@ module.exports = React.StyleSheet.create({
     flexDirection: 'row',
   },
 
-
-
   // CARD
   cardController: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     position: 'absolute',
     top: 0,
     left: 0,
-    right: 0,
     bottom: 0,
+    right: 0,
+  },
+  closeButton: {
+    position: 'relative',
+    backgroundColor: 'rgba(255,255,255,1)',
+    bottom: 0,
+    left: 0,
   },
   cardcontainer: {
     flex: 1,
@@ -122,7 +126,6 @@ module.exports = React.StyleSheet.create({
     right: 0,
     top: 0
   },
-
 
 
   // FRIEND CHOOSE
@@ -177,5 +180,33 @@ module.exports = React.StyleSheet.create({
   container: {
     flexDirection: 'column',
     flex: 1
+  },
+
+  // Details
+  detailsContainer: {
+    justifyContent: 'center',
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+  detailsTitle: {
+    fontSize: 30,
+    alignSelf: 'center',
+    marginBottom: 30
+  },
+  detailsButtonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  detailsButton: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   }
 })

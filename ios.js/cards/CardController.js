@@ -29,7 +29,7 @@ var {
   Text,
   View,
   Image,
-  Modal,
+  Component,
   ActivityIndicatorIOS,
   Navigator,
   TouchableOpacity,
@@ -38,7 +38,11 @@ var {
   Dimensions
 } = React
 
-class CardController extends Modal {
+var {
+  height: deviceHeight
+} = Dimensions.get('window');
+
+class CardController extends Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -46,6 +50,9 @@ class CardController extends Modal {
     this.currentCards = []
     this.nextCardIndex = 0
     this.getAllCards()
+    this.state ={
+      offset: new Animated.Value(deviceHeight)
+    }
   }
   getAllCards () {
     this.allCards = seededCards
@@ -71,6 +78,13 @@ class CardController extends Modal {
     // currentCards.push(this.allCards[this.nextCardIndex])
   }
 
+  componentDidMount() {
+    Animated.timing(this.state.offset, {
+      duration: 100,
+      toValue: 0
+    }).start();
+  }
+
   closeModal () {
     Animated.timing(this.state.offset, {
       duration: 100,
@@ -90,12 +104,12 @@ class CardController extends Modal {
     console.log("CARD STACK: ", cardStack)
 
     return (
-      <View style={styles.cardController}>
-        <TouchableHighlight onPress={this.props.closeModal}>
-          <Text>Close</Text>
-        </TouchableHighlight>
+      <Animated.View style={styles.cardController}>
         {cardStack}
-      </View>
+        <TouchableOpacity onPress={this.closeModal.bind(this)}>
+          <Text style={styles.closeButton}>Close</Text>
+        </TouchableOpacity>
+      </Animated.View>
     )
   }
 }
