@@ -164,8 +164,14 @@ class Card extends Component {
 
     return (
       <Animated.View style={[styles.cardcontainer, animatedCardstyles]} {...this._panResponder.panHandlers}>
-        <View style={[styles.card, {width: 500}, {height: 560}]}>
+        <View style={[styles.card, {width: 550}, {height: 610}]}>
           <Image source={this.props.cardInfo.image} style={styles.cardImage}/>
+          <Text style={styles.cardName}>{this.props.cardInfo.name}</Text>
+          <Text style={styles.rating}>{this.props.cardInfo.rating}</Text>
+          <View style={styles.swipeContainer}>
+          <Text style={styles.cardLocation}>{this.props.cardInfo.location}</Text>
+          <Text style={styles.cardDescription}>{this.props.cardInfo.description}</Text>
+          </View>
         </View>
       </Animated.View>
     )

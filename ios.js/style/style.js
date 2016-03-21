@@ -87,8 +87,8 @@ module.exports = React.StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: -600,
+    left: -90,
     bottom: 0,
     right: 0,
   },
@@ -96,25 +96,26 @@ module.exports = React.StyleSheet.create({
     position: 'relative',
     backgroundColor: 'rgba(255,255,255,1)',
     bottom: 0,
-    left: 0,
+    left: -100,
   },
   cardcontainer: {
     flex: 1,
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderRadius: 12
   },
   card: {
     borderWidth: 3,
     borderRadius: 12,
-    borderColor: '#000',
+    borderColor: '#30BDFF',
     padding: 10,
+    alignItems: 'center'
   },
   cardImage: {
-    height: 260,
-    alignItems: 'center',
-    justifyContent: 'center'
+    height: 270,
+    width: 270,
   },
   textLeft: {
     position: 'absolute',
@@ -126,7 +127,25 @@ module.exports = React.StyleSheet.create({
     right: 0,
     top: 0
   },
+  rating: {
+    fontSize: 40,
+    color: '#30BDFF',
+    padding: 5,
+  },
+  cardName: {
+    fontSize: 45,
+    color: '#30BDFF',
+    padding: 5,
 
+  },
+  cardLocation: {
+    fontSize: 20,
+    padding: 10,
+  },
+  cardDescription: {
+    fontSize: 25,
+    padding: 10,
+  },
 
   // FRIEND CHOOSE
   thumb: {
