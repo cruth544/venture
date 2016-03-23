@@ -161,24 +161,22 @@ class Dashboard extends Component {
       <TouchableHighlight onPress={()=>this.handlePress(rowData)}>
         <View>
           <View style={styles.dashboardCell}>
-            <View style={styles.dashRow}>
-              <Text>{rowData.time}</Text>
-              {checkStatus(rowData)}
+            <View style={styles.dashRow2}>
+              <Text style={styles.date}>Monday, June 5th</Text>
+              <Text>{checkStatus(rowData)}</Text>
             </View>
             <View style={styles.dashRow}>
               <Image style={styles.ventureThumb} source={{ uri: 'http://cdn.skim.gs/image/upload/c_fill,h_96,w_96,dpr_1.0/los-angeles-feature' }} />
-              <View>
+              <View style={styles.ventureData}>
                 <Text style={styles.ventureTitle}>{rowData.title}</Text>
-                <Text style={styles.ventureTitle} numberOfLines={1}>@{rowData.location}</Text>
-              </View>
-            </View>
-              <View style={styles.BottomRow}>
-                <View>
-                  <Text>Invited {rowData.people.length}</Text>
+                <Text style={styles.ventureLocation} numberOfLines={1}>@{rowData.location}</Text>
+                <Text style={styles.ventureTime}>{rowData.time}</Text>
+                <Text style={styles.invited}>Venturists: {rowData.people.length}</Text>
+                <View style={styles.venturists}>
                   <View style={styles.imgRow}>{invited}</View>
                 </View>
-                <Text style={styles.reviews}>Reviews {rowData.reviews.length}</Text>
               </View>
+            </View>
           </View>
         </View>
       </TouchableHighlight>
@@ -187,7 +185,7 @@ class Dashboard extends Component {
 
   createVenture() {
     this.props.navigator.push({
-      title: "Choose Your Friends",
+      title: "Venturists",
       component: Friends,
       passProps: {
         venture: new VentureEvent(
@@ -210,7 +208,7 @@ class Dashboard extends Component {
         </ListView>
         <TouchableHighlight onPress={this.createVenture.bind(this)}>
         <View style={styles.createVenture}>
-        <Text>New Venture</Text>
+        <Text style={styles.newventure}>+Venture</Text>
         </View>
         </TouchableHighlight>
 

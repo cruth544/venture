@@ -164,7 +164,7 @@ class Card extends Component {
 
     return (
       <Animated.View style={[styles.cardcontainer, animatedCardstyles]} {...this._panResponder.panHandlers}>
-        <View style={[styles.card, {width: 550}, {height: 610}]}>
+        <View style={[styles.card, {width: 640}, {height: 690}]}>
           <Image source={this.props.cardInfo.image} style={styles.cardImage}/>
           <Text style={styles.cardName}>{this.props.cardInfo.name}</Text>
           <Text style={styles.rating}>{this.props.cardInfo.rating}</Text>

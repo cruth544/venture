@@ -13,9 +13,6 @@ module.exports = React.StyleSheet.create({
     // borderRadius: 5,
     borderColor: '#e5e5e5',
     borderBottomWidth: 1,
-    padding: 10,
-    marginLeft: 10,
-    marginRight: 10,
   },
   time: {
     marginLeft: 10,
@@ -24,26 +21,53 @@ module.exports = React.StyleSheet.create({
     fontFamily: 'arial'
   },
   dashRow: {
+    padding: 10,
+    marginTop: -5,
+    marginBottom: -11,
+    // marginLeft: 5,
+    marginRight: 5,
     flexDirection: 'row',
     paddingVertical: 5,
+    flex: 1,
   },
-  BottomRow: {
+    dashRow2: {
     flexDirection: 'row',
-    paddingVertical: 10,
+    height: 30,
+    flex: 1,
+    backgroundColor: '#48BBEC',
+    alignItems: 'center',
+    borderRadius: 1
+  },
+  date: {
+    color: 'white',
+    marginLeft: 20,
+    paddingRight: 110,
+    fontSize: 16
+  },
+  ventureData: {
+    padding: 5,
   },
   ventureThumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10
+    width: 130,
+    height: 130,
+    marginRight: 5,
+    marginLeft: -11,
   },
   ventureTitle: {
-    fontSize: 23,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#48BBEC',
-    marginLeft: 10
+    paddingBottom: 3,
+  },
+  ventureLocation: {
+    color: 'red',
+    fontSize: 14,
+    paddingBottom: 3,
+  },
+  ventureTime: {
+    fontWeight: 'bold',
   },
   answerStatus: {
-    left: 220,
     color: 'green'
   },
   reviews: {
@@ -58,14 +82,13 @@ module.exports = React.StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    marginLeft: 5,
   },
   createVenture: {
     position: 'absolute',
     right: 10,
     bottom: 10,
-    width: 70,
-    height: 70,
+    width: 72,
+    height: 72,
     borderRadius: 70,
     borderWidth: 3,
     borderColor: '#f7f2f2',
@@ -74,10 +97,20 @@ module.exports = React.StyleSheet.create({
     justifyContent: 'center'
   },
   newventure: {
-    color: 'white'
+    color: 'white',
+    fontWeight: 'bold'
   },
   imgRow: {
     flexDirection: 'row',
+    margin: 2,
+  },
+  invited: {
+    paddingBottom: 3,
+    marginLeft: 140,
+    color: 'grey'
+  },
+  venturists: {
+    marginLeft: 100
   },
 
   // CARD
@@ -88,7 +121,7 @@ module.exports = React.StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     position: 'absolute',
     top: -600,
-    left: -90,
+    left: -132,
     bottom: 0,
     right: 0,
   },
@@ -135,15 +168,15 @@ module.exports = React.StyleSheet.create({
   cardName: {
     fontSize: 45,
     color: '#30BDFF',
-    padding: 5,
+    padding: 10,
 
   },
   cardLocation: {
-    fontSize: 20,
+    fontSize: 25,
     padding: 10,
   },
   cardDescription: {
-    fontSize: 25,
+    fontSize: 30,
     padding: 10,
   },
 
