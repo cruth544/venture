@@ -11,7 +11,8 @@ var {
   TouchableHighlight,
   ListView,
   Text,
-  Component
+  Component,
+  TextInput
 } = React;
 
 var friend = [
@@ -104,19 +105,31 @@ class Friends extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-      <View style={styles.separator}/>
-      <Text style={styles.heading}>Favorites</Text>
-      <View style={styles.separator}/>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)} />
+      <View style={styles.containerFriend}>
+      <View style={styles.flowRight}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder='Search Venturists...'/>
+          <TouchableHighlight style={styles.button}
+          // color of button once tapped
+            underlayColor='#99d9f4'>
+              <Text style={styles.buttonText}>Go</Text>
+          </TouchableHighlight>
+      </View>
         <View style={styles.separator}/>
-      <Text style={styles.heading}>Friends</Text>
-      <View style={styles.separator}/>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)} />
+        <Text style={styles.heading2}>Favorites</Text>
+        <View style={styles.separator}/>
+        <View style={styles.friendGroup}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow.bind(this)} />
+            <View style={styles.separator}/>
+        </View>
+        <Text style={styles.heading}>Friends</Text>
+        <View style={styles.separator}/>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow.bind(this)} />
       </View>
     )
   }

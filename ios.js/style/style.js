@@ -210,10 +210,11 @@ module.exports = React.StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     padding: 5,
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  container: {
-    flex: 1
+  containerFriend: {
+    flex: 1,
+    marginTop: 64
   },
   text: {
     fontSize: 14,
@@ -229,9 +230,52 @@ module.exports = React.StyleSheet.create({
     // borderColor: '#0099ff',
     borderWidth: 0.1,
   },
+    heading2: {
+    flexDirection: 'row',
+    paddingTop: 3,
+    paddingLeft: 25,
+    paddingBottom: 3,
+    fontSize: 12,
+    color: '#0099ff',
+    marginTop: -8,
+    borderWidth: 0.1,
+  },
   container: {
     flexDirection: 'column',
     flex: 1
+  },
+  friendGroup: {
+    marginTop: -60
+  },
+  flowRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch'
+  },
+  searchInput: {
+    height: 36,
+    padding: 10,
+    flex: 4,
+    fontSize: 15,
+    borderWidth: 1,
+    borderColor: '#48BBEC',
+    color: '#48BBEC'
+  },
+  button: {
+    height: 36,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
   },
 
   // Details
