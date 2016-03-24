@@ -173,6 +173,14 @@ class Card extends Component {
           <Text style={styles.cardDescription}>{this.props.cardInfo.description}</Text>
           </View>
         </View>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight style={styles.buttonNo}>
+                <Text style={styles.buttonTextNo}>No</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={styles.buttonYes}>
+                <Text style={styles.buttonTextYes}>Yes</Text>
+          </TouchableHighlight>
+        </View>
       </Animated.View>
     )
   }

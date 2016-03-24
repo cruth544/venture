@@ -120,7 +120,7 @@ module.exports = React.StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     position: 'absolute',
-    top: -600,
+    top: -800,
     left: -132,
     bottom: 0,
     right: 0,
@@ -142,7 +142,7 @@ module.exports = React.StyleSheet.create({
   card: {
     borderWidth: 3,
     borderRadius: 12,
-    borderColor: '#30BDFF',
+    borderColor: 'white',
     padding: 10,
     alignItems: 'center'
   },
@@ -178,6 +178,37 @@ module.exports = React.StyleSheet.create({
   cardDescription: {
     fontSize: 30,
     padding: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    paddingBottom: 40,
+  },
+  buttonNo: {
+    borderWidth: 10,
+    borderColor: 'red',
+    height: 140,
+    width: 140,
+    borderRadius: 70,
+    justifyContent: 'center',
+    marginRight: 40,
+  },
+  buttonYes: {
+    borderWidth: 10,
+    borderColor: '#4bdd2a',
+    height: 140,
+    width: 140,
+    borderRadius: 70,
+    justifyContent: 'center',
+  },
+  buttonTextNo: {
+    alignSelf: 'center',
+    fontSize: 30,
+    color: 'red',
+  },
+    buttonTextYes: {
+    alignSelf: 'center',
+    fontSize: 30,
+    color: '#4bdd2a',
   },
 
   // FRIEND CHOOSE
