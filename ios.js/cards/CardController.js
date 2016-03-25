@@ -9,21 +9,6 @@ var screenSize = Dimensions.get('window')
 var Card = require('./Card.js')
 var styles         = require('../style/style.js')
 
-var seededCards = [
-  {name: "Pizza Hut",
-    image: require("image!pizza-hut"),
-    rating: 3, location: "1234 Something St. Los Angeles, CA 900123", description: "Greasy, deep-dish Pizza... Mm~"},
-  {name: "Dominos",
-    image: require("image!dominos"),
-    rating: 2, location: "1234 Something St. Los Angeles, CA 900123", description: "Nasty, ugly-ass Pizza. Blech."},
-  {name: "Papa Johns",
-    image: require("image!papa-johns"),
-    rating: 4, location: "1234 Something St. Los Angeles, CA 900123", description: "Greaseless pizza, but that GARLIC SAUCE MM"},
-  {name: "Cheesy Triangles",
-    image: require("image!churchill"),
-    rating: 5, location: "1234 Something St. Los Angeles, CA 900123", description: "Magical triangles that don't do nothing for nobody."},
-]
-
 var {
   Text,
   View,
@@ -43,40 +28,40 @@ var {
 
 class CardController extends Component {
   constructor(props) {
-    console.log("CARD CONTROLLER CREATED")
     super(props)
     this.allCards = []
-    this.currentCards = []
-    this.nextCardIndex = 0
+    this.nextCardIndex = 3
     this.getAllCards()
     this.state ={
+      cardsInView: this.allCards.slice(0,3).reverse(),
       offset: new Animated.Value(deviceHeight)
     }
   }
-  getAllCards () {
+
+  getAllCards = () => {
     this.allCards = this.props.cards
-    this.nextCardIndex = 0
+    // this.nextCardIndex = 0
     console.log("ALL: ", this.allCards)
     // this.allCards.push(API CALL)
-  }
+  };
 
-  cardThrown (cardThrown, direction) {
-    console.log("HELLOOOOOOO")
-    console.log(cardThrown)
+  cardThrown = (card, direction) => {
+    console.log(card)
     console.log("Direction: ", direction)
-    //TODO: Set yes vs no based on direction
-    // this.addNextCard(currentCards)
-    var cardIndex = this.allCards.indexOf(cardThrown.props.cardInfo)
-    this.allCards[cardIndex] = null
-    console.log("INDEX: ", cardIndex)
-    if (!this.allCards[this.allCards.length - 1]) {
-      this.closeModal()
+    if (this.nextCardIndex >= this.allCards.length) {
+      return this.closeModal()
     }
-  }
-  addNextCard (currentCards) {
-    // currentCards.shift()
-    // currentCards.push(this.allCards[this.nextCardIndex])
-  }
+    //TODO: Set yes vs no based on direction
+    this.addNextCard()
+  };
+
+  addNextCard = () => {
+    var currentCards = this.state.cardsInView
+    currentCards.pop()
+    currentCards.unshift(this.allCards[this.nextCardIndex])
+    this.nextCardIndex++
+    this.setState({cardsInView: currentCards})
+  };
 
   componentDidMount() {
     Animated.timing(this.state.offset, {
@@ -85,20 +70,19 @@ class CardController extends Component {
     }).start();
   }
 
-  closeModal () {
+  closeModal = () => {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: screenSize.height
     }).start(this.props.closeModal)
-  }
+  };
 
   render () {
-    for (var i = 0; i < this.allCards.length; i++) {
-      this.currentCards.unshift(this.allCards[this.nextCardIndex])
-      this.nextCardIndex++
-    }
-    console.log("CURRENT CARDS: ", this.currentCards)
-    var cardStack = this.currentCards.map((card, i) => {
+    // for (var i = 0; i < this.allCards.length; i++) {
+    //   this.currentCards.unshift(this.allCards[this.nextCardIndex])
+    //   this.nextCardIndex++
+    // }
+    var cardStack = this.state.cardsInView.map((card, i) => {
       return (<Card key={i} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
     })
     console.log("CARD STACK: ", cardStack)
@@ -106,7 +90,7 @@ class CardController extends Component {
     return (
       <Animated.View style={styles.cardController}>
         {cardStack}
-        <TouchableOpacity onPress={this.closeModal.bind(this)}>
+        <TouchableOpacity onPress={this.closeModal}>
           <Text style={styles.closeButton}>Close</Text>
         </TouchableOpacity>
       </Animated.View>
