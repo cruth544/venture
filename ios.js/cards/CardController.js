@@ -28,7 +28,6 @@ var screenSize = Dimensions.get('window')
 class CardController extends Component {
   constructor(props) {
     super(props)
-    // this.nextCardIndex = 3
     this.state ={
       cardsInView: this.props.cards.slice(0,3).reverse(),
       nextCard: 3,
@@ -37,12 +36,13 @@ class CardController extends Component {
   }
 
   cardThrown = (card, direction) => {
-    console.log(card)
-    console.log("Direction: ", direction)
+    // console.log(card)
+    // console.log("Direction: ", direction)
     if (this.state.nextCard >= this.props.cards.length) {
       return this.closeModal()
     }
     //TODO: Set yes vs no based on direction
+
     this.addNextCard()
   };
 
@@ -56,6 +56,7 @@ class CardController extends Component {
       cardsInView: currentCards,
       nextCard: nextCard
     })
+    console.log('CARDSINVIEW :', this.state.cardsInView)
   };
 
   componentDidMount() {
