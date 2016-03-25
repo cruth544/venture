@@ -60,7 +60,7 @@ class CardController extends Component {
     // this.allCards.push(API CALL)
   }
 
-  cardThrown (cardThrown, direction) {
+  cardThrown = (cardThrown, direction) => {
     console.log("HELLOOOOOOO")
     console.log(cardThrown)
     console.log("Direction: ", direction)
@@ -72,7 +72,8 @@ class CardController extends Component {
     if (!this.allCards[this.allCards.length - 1]) {
       this.closeModal()
     }
-  }
+  };
+
   addNextCard (currentCards) {
     // currentCards.shift()
     // currentCards.push(this.allCards[this.nextCardIndex])
@@ -99,7 +100,7 @@ class CardController extends Component {
     }
     console.log("CURRENT CARDS: ", this.currentCards)
     var cardStack = this.currentCards.map((card, i) => {
-      return (<Card key={i} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
+      return (<Card style={{marginTop: 10 + (i*10)}} key={i} cardInfo={card} cardThrown={this.cardThrown}></Card>)
     })
     console.log("CARD STACK: ", cardStack)
 

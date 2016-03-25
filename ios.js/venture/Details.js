@@ -41,6 +41,7 @@ var {
   Component
 } = React
 
+global.___DEV___ = false
 
 class CreateDetails extends Component {
 

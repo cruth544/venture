@@ -163,7 +163,7 @@ class Card extends Component {
     console.log(this.props)
 
     return (
-      <Animated.View style={[styles.cardcontainer, animatedCardstyles]} {...this._panResponder.panHandlers}>
+      <Animated.View style={[styles.cardcontainer, animatedCardstyles, this.props.style]} {...this._panResponder.panHandlers}>
         <View style={[styles.card, {width: 550}, {height: 610}]}>
           <Image source={this.props.cardInfo.image} style={styles.cardImage}/>
           <Text style={styles.cardName}>{this.props.cardInfo.name}</Text>
