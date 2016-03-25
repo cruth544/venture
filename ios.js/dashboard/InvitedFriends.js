@@ -19,7 +19,7 @@ class InvitedFriends extends Component {
     })
     console.log(friends);
     return (
-      <View style={styles.wrapper}>
+      <View style={{marginTop: 70}}>
         {friends}
       </View>
     )

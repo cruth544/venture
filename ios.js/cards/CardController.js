@@ -1,12 +1,10 @@
 'use strict'
 
 // Imports
-var React = require('react-native')
-var Dimensions = require('Dimensions')
-var screenSize = Dimensions.get('window')
+var React          = require('react-native')
 
 // Custom Classes
-var Card = require('./Card.js')
+var Card           = require('./Card.js')
 var styles         = require('../style/style.js')
 
 var {
@@ -25,30 +23,23 @@ var {
 var {
   height: deviceHeight
 } = Dimensions.get('window');
+var screenSize = Dimensions.get('window')
 
 class CardController extends Component {
   constructor(props) {
     super(props)
-    this.allCards = []
-    this.nextCardIndex = 3
-    this.getAllCards()
+    // this.nextCardIndex = 3
     this.state ={
-      cardsInView: this.allCards.slice(0,3).reverse(),
+      cardsInView: this.props.cards.slice(0,3).reverse(),
+      nextCard: 3,
       offset: new Animated.Value(deviceHeight)
     }
   }
 
-  getAllCards = () => {
-    this.allCards = this.props.cards
-    // this.nextCardIndex = 0
-    console.log("ALL: ", this.allCards)
-    // this.allCards.push(API CALL)
-  };
-
   cardThrown = (card, direction) => {
     console.log(card)
     console.log("Direction: ", direction)
-    if (this.nextCardIndex >= this.allCards.length) {
+    if (this.state.nextCard >= this.props.cards.length) {
       return this.closeModal()
     }
     //TODO: Set yes vs no based on direction
@@ -57,10 +48,14 @@ class CardController extends Component {
 
   addNextCard = () => {
     var currentCards = this.state.cardsInView
+    var nextCard = this.state.nextCard
     currentCards.pop()
-    currentCards.unshift(this.allCards[this.nextCardIndex])
-    this.nextCardIndex++
-    this.setState({cardsInView: currentCards})
+    currentCards.unshift(this.props.cards[nextCard])
+    nextCard++
+    this.setState({
+      cardsInView: currentCards,
+      nextCard: nextCard
+    })
   };
 
   componentDidMount() {
@@ -78,10 +73,6 @@ class CardController extends Component {
   };
 
   render () {
-    // for (var i = 0; i < this.allCards.length; i++) {
-    //   this.currentCards.unshift(this.allCards[this.nextCardIndex])
-    //   this.nextCardIndex++
-    // }
     var cardStack = this.state.cardsInView.map((card, i) => {
       return (<Card key={i} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
     })
@@ -98,11 +89,11 @@ class CardController extends Component {
   }
 }
 
-CardController.propTypes = {
-  allCards: React.PropTypes.array
-}
-CardController.defaultProps = {
-  allCards: []
-}
+// CardController.propTypes = {
+//   allCards: React.PropTypes.array
+// }
+// CardController.defaultProps = {
+//   allCards: []
+// }
 
 module.exports = CardController
