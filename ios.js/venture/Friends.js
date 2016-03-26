@@ -3,6 +3,7 @@ var React   = require('react-native');
 var styles  = require('../style/style.js');
 var Details = require('./Details.js')
 
+
 var {
   AppRegistry,
   StyleSheet,
@@ -12,7 +13,8 @@ var {
   ListView,
   Text,
   Component,
-  TextInput
+  TextInput,
+  CheckBox
 } = React;
 
 var friend = [
@@ -35,7 +37,7 @@ var friend = [
 
   {
     id: 4,
-    name: "Nick Castenada",
+    name: "Nick Castanada",
     picture: {thumbnail: 'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/923477_10202392876877204_972724843_n.jpg?oh=984cb5b274707fc2f5de21b82fc41564&oe=579395EE'}
   },
 
@@ -69,9 +71,11 @@ class Friends extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     })
     this.state = {
-      dataSource: dataSource.cloneWithRows(friend)
+      dataSource: dataSource.cloneWithRows(friend),
     }
   }
+
+
 
   rowPressed(friend, venture) {
     console.log("FRIEND: ", friend)
@@ -86,10 +90,12 @@ class Friends extends Component {
     })
   }
 
+
+
   renderRow(rowData, sectionID, rowID) {
     return (
-      <TouchableHighlight onPress={() => this.rowPressed(rowData.friend, this.props.venture)}
-          underlayColor='#dddddd'>
+      <TouchableHighlight
+          underlayColor="#dddddd">
         <View>
           <View style={styles.rowContainer}>
             <Image style={styles.thumb} source={{ uri: rowData.picture.thumbnail}} />
@@ -97,39 +103,31 @@ class Friends extends Component {
               <Text style={styles.text}>{rowData.name}</Text>
               </View>
           </View>
+          <CheckBox />
           <View style={styles.separator2}/>
         </View>
       </TouchableHighlight>
     )
   }
 
-  render() {
+  render(rowData) {
     return (
       <View style={styles.containerFriend}>
-      <View style={styles.flowRight}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder='Search Venturists...'/>
-          <TouchableHighlight style={styles.button}
-          // color of button once tapped
-            underlayColor='#99d9f4'>
-              <Text style={styles.buttonText}>Go</Text>
-          </TouchableHighlight>
-      </View>
-        <View style={styles.separator}/>
-        <Text style={styles.heading2}>Favorites</Text>
-        <View style={styles.separator}/>
-        <View style={styles.friendGroup}>
+          <View style={styles.flowRight}>
+              <TextInput
+                style={styles.searchInput}
+                placeholder='Search Venturists...'/>
+          </View>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this.renderRow.bind(this)} />
-            <View style={styles.separator}/>
-        </View>
-        <Text style={styles.heading}>Friends</Text>
-        <View style={styles.separator}/>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow.bind(this)} />
+          <TouchableHighlight
+            onPress={() => this.rowPressed(rowData, this.props.venture)}
+            underlayColor='#dddddd'
+            style={styles.button}
+            underlayColor='#0084c1'>
+              <Text style={styles.buttonText}>Go Venture!</Text>
+          </TouchableHighlight>
       </View>
     )
   }

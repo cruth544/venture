@@ -137,7 +137,9 @@ module.exports = React.StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 1)',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 12
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'grey'
   },
   card: {
     borderWidth: 3,
@@ -245,7 +247,7 @@ module.exports = React.StyleSheet.create({
   },
   containerFriend: {
     flex: 1,
-    marginTop: 64
+    marginTop: 64,
   },
   text: {
     fontSize: 14,
@@ -281,7 +283,7 @@ module.exports = React.StyleSheet.create({
   flowRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
   },
   searchInput: {
     height: 36,
@@ -289,17 +291,15 @@ module.exports = React.StyleSheet.create({
     flex: 4,
     fontSize: 15,
     borderWidth: 1,
-    borderColor: '#48BBEC',
-    color: '#48BBEC'
+    borderColor: '#e8e8e8',
+    color: '#48BBEC',
   },
   button: {
-    height: 36,
-    flex: 1,
+    height: 60,
     flexDirection: 'row',
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderWidth: 1,
-    marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
