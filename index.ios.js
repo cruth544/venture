@@ -19,8 +19,8 @@ class VentureApp extends Component {
       <NavigatorIOS
         style={styles.wrapper}
         initialRoute={{
-        title: 'Login',
-        component: Login
+        title: 'Dashboard',
+        component: Dashboard
       }}/>
     )
   }

@@ -73,6 +73,19 @@ module.exports = React.StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  login: {
+    position: 'absolute',
+    left: 10,
+    bottom: 10,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
+    borderWidth: 3,
+    borderColor: '#ff69b4',
+    backgroundColor: '#ff0080',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   newventure: {
     color: 'white'
   },
@@ -229,9 +242,5 @@ module.exports = React.StyleSheet.create({
     justifyContent: 'center'
   },
 
-  // Login
-  loginContainer: {
-    marginTop: 50,
-    padding: 20,
-  }
+
 })

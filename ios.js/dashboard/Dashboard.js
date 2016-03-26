@@ -5,6 +5,9 @@ var CardController = require('../cards/CardController.js')
 var Friends        = require('../venture/Friends.js')
 var InvitedFriends = require('../dashboard/InvitedFriends.js')
 
+var Firebase = require('firebase');
+var database = new Firebase("https://ventureus.firebaseio.com/");
+
 var {
   Image,
   View,
@@ -106,19 +109,6 @@ class Dashboard extends Component {
   //   )
   // }
 
-  componentWillReceiveProps(nextProps) {
-    console.log("PROPS: ", nextProps)
-    console.log("WINDOW: ", window.venture)
-    if (window.venture) {
-      if (ventures.indexOf(window.venture) < 0) {
-        ventures.push(window.venture)
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(ventures)
-        })
-      }
-    }
-    console.log("VENTURES: ", ventures)
-  }
 
   openModal(choices) {
     console.log("CHOICES: ", choices)
@@ -196,6 +186,21 @@ class Dashboard extends Component {
     });
   }
 
+  login() {
+    console.log("save method")
+    database.authWithPassword({
+      email    : "npcastaneda@gmail.com",
+      password : 'pw'
+    }, function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("uID: " + authData.uid);
+        console.log("Token: " + authData.token);
+      }
+    });
+  }
+
   render() {
     return (
       <View style={styles.wrapper}>
@@ -208,6 +213,13 @@ class Dashboard extends Component {
             </Text>
           </View>
         </ListView>
+
+        <TouchableHighlight onPress={this.login}>
+        <View style={styles.login}>
+        <Text>Login</Text>
+        </View>
+        </TouchableHighlight>
+
         <TouchableHighlight onPress={this.createVenture.bind(this)}>
         <View style={styles.createVenture}>
         <Text>New Venture</Text>
