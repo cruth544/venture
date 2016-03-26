@@ -45,6 +45,9 @@ class CardController extends Component {
     //TODO: Set yes vs no based on direction
 
     this.addNextCard(card, flag)
+    if (this.state.cardsInView.length < 1) {
+      this.closeModal()
+    }
   };
 
   addNextCard = (card, endOfStack) => {
@@ -59,7 +62,6 @@ class CardController extends Component {
       cardsInView: currentCards,
       nextCard: nextCard
     })
-    console.log('CARDSINVIEW :', this.state.cardsInView)
   };
 
   componentDidMount() {
