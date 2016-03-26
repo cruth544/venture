@@ -227,5 +227,11 @@ module.exports = React.StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+
+  // Login
+  loginContainer: {
+    marginTop: 50,
+    padding: 20,
   }
 })
