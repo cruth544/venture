@@ -47,7 +47,7 @@ class CreateDetails extends Component {
   create = () => {
     console.log(this.props.venture)
     window.venture = this.props.venture
-    this.props.venture.choices = send()
+    this.props.venture.choices = this.send()
     this.props.navigator.popToTop({
       passProps: {
         venture: this.props.venture
@@ -59,15 +59,18 @@ class CreateDetails extends Component {
     fetch('http://venture-api.herokuapp.com/api/yelp/search', {
       method: 'POST',
       body: JSON.stringify({
-        term: 'Korean',
-        category: 'Restaurant',
-        location: '90017',
-        limit: '10',
+        'term' : 'Korean',
+        'category' : 'Restaurant',
+        'location' : '90017',
+        'limit' : '10',
+      })
     }).then((res) => {
-      console.log(res)
-      return res
+      var data = JSON.parse(res._bodyInit)
+      var ventures = data.ventures
+      console.log('API RESULT :', ventures)
+      return ventures
     }).catch((err) => {
-      console.log(err)
+      console.log('API ERROR :', err)
     })
   }
 
