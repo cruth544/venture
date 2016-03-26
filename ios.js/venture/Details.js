@@ -44,19 +44,26 @@ var {
 
 class CreateDetails extends Component {
 
-  save(){
+  create = () => {
     console.log(this.props.venture)
     window.venture = this.props.venture
-    this.props.venture.choices = this.send()
+    this.props.venture.choices = send()
     this.props.navigator.popToTop({
       passProps: {
         venture: this.props.venture
       }
-    });
-  }
+    })
+  };
 
   async send() {
-    fetch('http://localhost:8000/').then((res) => {
+    fetch('http://venture-api.herokuapp.com/api/yelp/search', {
+      method: 'POST',
+      body: JSON.stringify({
+        term: 'Korean',
+        category: 'Restaurant',
+        location: '90017',
+        limit: '10',
+    }).then((res) => {
       console.log(res)
       return res
     }).catch((err) => {
@@ -71,7 +78,7 @@ class CreateDetails extends Component {
           ref="form"
           type={Event}
           options={options}/>
-        <TouchableHighlight style={styles.detailsButton} onPress={this.save.bind(this)} underlayColor='#99d9f4'>
+        <TouchableHighlight style={styles.detailsButton} onPress={this.create} underlayColor='#99d9f4'>
           <Text style={styles.detailsButtonText}>Save</Text>
         </TouchableHighlight>
       </View>
