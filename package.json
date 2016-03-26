@@ -8,6 +8,7 @@
   "dependencies": {
     "react-native": "^0.21.0",
     "react-native-checkbox": "^1.0.8",
+    "react-native-facebook-login": "^1.0.3",
     "tcomb-form-native": "^0.4.0"
   }
 }

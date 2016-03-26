@@ -2,6 +2,8 @@
 var React   = require('react-native')
 var Dashboard = require('../dashboard/Dashboard.js')
 var styles  = require('../style/style.js')
+var FBLogin = require('react-native-facebook-login');
+
 
 var {
   Image,
@@ -11,6 +13,14 @@ var {
   Text,
   Component
 } = React
+
+var Login = React.createClass({
+  render: function() {
+    return (
+      <FBLogin />
+    );
+  }
+})
 
 class LoginController extends Component {
   constructor (props) {
@@ -31,10 +41,8 @@ class LoginController extends Component {
 
 
     return (
-      <View>
-        <TouchableHighlight style={{marginTop: 70}} onPress={this.login}>
-          <Text>Login</Text>
-        </TouchableHighlight>
+      <View style={{marginTop: 70}}>
+        <Login></Login>
       </View>
     )
   }
