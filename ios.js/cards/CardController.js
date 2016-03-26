@@ -80,16 +80,19 @@ class CardController extends Component {
 
   render () {
     var cardStack = this.state.cardsInView.map((card, i) => {
-      return (<Card key={i} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
+      var topCard = false
+      if (this.state.nextCard >= this.props.cards.length) {
+        topCard = true
+      } else if (i === this.state.cardsInView.length - 1) {
+        topCard = true
+      }
+      return (<Card key={i} topCard={topCard} cardInfo={card} cardThrown={this.cardThrown.bind(this)}></Card>)
     })
     console.log("CARD STACK: ", cardStack)
 
     return (
       <Animated.View style={styles.cardController}>
         {cardStack}
-        <TouchableOpacity onPress={this.closeModal}>
-          <Text style={styles.closeButton}>Close</Text>
-        </TouchableOpacity>
       </Animated.View>
     )
   }

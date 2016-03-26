@@ -45,6 +45,7 @@ class Card extends Component {
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
       onPanResponderGrant: (evt, gestureState) => {
+
         // The guesture has started. Show visual feedback so the user knows
         // what is happening!
 
