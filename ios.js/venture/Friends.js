@@ -1,8 +1,8 @@
 'use strict';
-var React   = require('react-native');
-var styles  = require('../style/style.js');
-var Details = require('./Details.js')
-
+var React    = require('react-native');
+var styles   = require('../style/style.js');
+var Details  = require('./Details.js');
+var CheckBox = require('react-native-checkbox');
 
 var {
   AppRegistry,
@@ -14,7 +14,6 @@ var {
   Text,
   Component,
   TextInput,
-  CheckBox
 } = React;
 
 var friend = [
@@ -102,8 +101,10 @@ class Friends extends Component {
               <View style={styles.textContainer}>
               <Text style={styles.text}>{rowData.name}</Text>
               </View>
+          <CheckBox
+              label= ''
+              checked={true}/>
           </View>
-          <CheckBox />
           <View style={styles.separator2}/>
         </View>
       </TouchableHighlight>
