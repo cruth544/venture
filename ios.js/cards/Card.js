@@ -95,7 +95,7 @@ class Card extends Component {
           Animated.decay(this.state.pan, {
             velocity: {x: velocity, y: vy},
             deceleration: 0.98
-          }).start(this._removeCard.bind(this, direction))
+          }).start(this._resetState.bind(this, direction))
         } else {
           Animated.spring(this.state.pan, {
             toValue: {x: 0, y: 0},
@@ -124,7 +124,6 @@ class Card extends Component {
 
   _removeCard(direction) {
     this.state.pan.setValue({x: screenSize.width, y: screenSize.height})
-    console.log("REMOVING: ", screenSize.height)
     this.props.cardThrown(this, direction)
     // this.props.cardRemoved
     //   ? this.props.cardRemoved(this.props.cards.indexOf(this.state.card))
@@ -160,7 +159,7 @@ class Card extends Component {
 
     let animatedCardstyles = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity}
 
-    console.log(this.props)
+    console.log("Render Card: ", this.props)
 
     return (
       <Animated.View style={[styles.cardcontainer, animatedCardstyles]} {...this._panResponder.panHandlers}>

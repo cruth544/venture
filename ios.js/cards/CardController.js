@@ -39,19 +39,22 @@ class CardController extends Component {
     // console.log(card)
     // console.log("Direction: ", direction)
     if (this.state.nextCard >= this.props.cards.length) {
-      return this.closeModal()
+      var flag = true
+      // return this.closeModal()
     }
     //TODO: Set yes vs no based on direction
 
-    this.addNextCard()
+    this.addNextCard(card, flag)
   };
 
-  addNextCard = () => {
+  addNextCard = (card, endOfStack) => {
     var currentCards = this.state.cardsInView
     var nextCard = this.state.nextCard
-    currentCards.pop()
-    currentCards.unshift(this.props.cards[nextCard])
-    nextCard++
+    currentCards.splice(currentCards.indexOf(card.props.cardInfo), 1)
+    if (!endOfStack) {
+      currentCards.unshift(this.props.cards[nextCard])
+      nextCard++
+    }
     this.setState({
       cardsInView: currentCards,
       nextCard: nextCard
@@ -89,12 +92,5 @@ class CardController extends Component {
     )
   }
 }
-
-// CardController.propTypes = {
-//   allCards: React.PropTypes.array
-// }
-// CardController.defaultProps = {
-//   allCards: []
-// }
 
 module.exports = CardController
