@@ -186,6 +186,36 @@ class Dashboard extends Component {
     });
   }
 
+  // Will be replaced with fb auth. Right now the email and pw are hard
+  // coded in
+  register() {
+    console.log("hi")
+    database.createUser({
+      email: "npcastaneda@gmail.com",
+      password: "pdub"
+    }, function(error, userData) {
+      if (error) {
+        switch (error.code) {
+          case "EMAIL_TAKEN":
+            console.log("The new user account cannot be created because the email is already in use.");
+            break;
+          case "INVALID_EMAIL":
+            console.log("The specified email is not a valid email.");
+            break;
+          default:
+            console.log("Error creating user:", error);
+        }
+      } else {
+        console.log(userData)
+        database.child("users").child(userData.uid).set({
+          name: "npcastaneda@gmail.com"
+        });
+        console.log("Successfully created user account with uid:", userData.uid);
+
+      }
+    });
+  }
+
   login() {
     console.log("save method")
     database.authWithPassword({
@@ -214,9 +244,17 @@ class Dashboard extends Component {
           </View>
         </ListView>
 
+        {/*/   Temporary Firebase Login Button   /*/}
         <TouchableHighlight onPress={this.login}>
         <View style={styles.login}>
         <Text>Login</Text>
+        </View>
+        </TouchableHighlight>
+
+        {/*/   Temporary Firebase Register Button   /*/}
+        <TouchableHighlight onPress={this.register}>
+        <View style={styles.register}>
+        <Text>Register</Text>
         </View>
         </TouchableHighlight>
 

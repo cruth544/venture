@@ -73,6 +73,10 @@ module.exports = React.StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+
+  //////////////////////////////////////////////////////////////////////
+  //                     Firebase setup StyleSheet                    //
+  //////////////////////////////////////////////////////////////////////
   login: {
     position: 'absolute',
     left: 10,
@@ -86,6 +90,21 @@ module.exports = React.StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  register: {
+    position: 'absolute',
+    left: 150,
+    bottom: 10,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
+    borderWidth: 3,
+    borderColor: 'purple',
+    backgroundColor: 'purple',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  //////////////////////////////////////////////////////////////////////
+
   newventure: {
     color: 'white'
   },
