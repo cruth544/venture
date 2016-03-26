@@ -47,11 +47,21 @@ class CreateDetails extends Component {
   save(){
     console.log(this.props.venture)
     window.venture = this.props.venture
+    this.props.venture.choices = this.send()
     this.props.navigator.popToTop({
       passProps: {
         venture: this.props.venture
       }
     });
+  }
+
+  async send() {
+    fetch('http://localhost:8000/').then((res) => {
+      console.log(res)
+      return res
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   render(){
