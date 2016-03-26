@@ -63,6 +63,9 @@ var ventures = [
       {name: "Cheesy Triangles",
         image: require("image!churchill"),
         rating: 5, location: "1234 Something St. Los Angeles, CA 900123", description: "Magical triangles that don't do nothing for nobody."},
+      {name: "Mickey",
+        image: require("image!mickey"),
+        rating: 5, location: "1234 Something St. Los Angeles, CA 900123", description: "Mickey Mouse!!"},
     ],
     reviews: [],
     pictures: []
