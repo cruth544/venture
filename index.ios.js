@@ -10,6 +10,7 @@ import React, {
 } from 'react-native'
 
 var Dashboard = require("./ios.js/dashboard/Dashboard.js")
+var Login     = require("./ios.js/login/LoginController.js")
 var styles    = require("./ios.js/style/style.js")
 
 class VentureApp extends Component {
@@ -18,8 +19,8 @@ class VentureApp extends Component {
       <NavigatorIOS
         style={styles.wrapper}
         initialRoute={{
-        title: 'Dashboard',
-        component: Dashboard
+        title: 'Login',
+        component: Login
       }}/>
     )
   }
