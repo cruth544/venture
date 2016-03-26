@@ -47,7 +47,7 @@ class CreateDetails extends Component {
   create = () => {
     console.log(this.props.venture)
     window.venture = this.props.venture
-    this.props.venture.choices = this.send()
+    this.send()
     this.props.navigator.popToTop({
       passProps: {
         venture: this.props.venture
@@ -68,6 +68,11 @@ class CreateDetails extends Component {
       var data = JSON.parse(res._bodyInit)
       var ventures = data.ventures
       console.log('API RESULT :', ventures)
+      ventures = ventures.map(function (venture) {
+        venture.location = venture.location.city
+        return venture
+      })
+      window.venture.choices = ventures
       return ventures
     }).catch((err) => {
       console.log('API ERROR :', err)

@@ -5,6 +5,9 @@ var CardController = require('../cards/CardController.js')
 var Friends        = require('../venture/Friends.js')
 var InvitedFriends = require('../dashboard/InvitedFriends.js')
 
+// Venture Model
+var Venture = require('../models/VentureEvent.js')
+
 var {
   Image,
   View,
@@ -72,24 +75,6 @@ var ventures = [
   },
 
 ]
-
-class VentureEvent {
-  constructor(id, date, title, location, time, category) {
-    // To be set later (because La wants it named like that)
-    this.answered = 0
-    this.reviews = []
-    this.pictures = []
-    this.people = []
-
-    // Touchable Values
-    this.id = id
-    this.date = date
-    this.title = title
-    this.location = location
-    this.time = time
-    this.category = category
-  }
-}
 
 class Dashboard extends Component {
 
@@ -191,7 +176,7 @@ class Dashboard extends Component {
       title: "Venturists",
       component: Friends,
       passProps: {
-        venture: new VentureEvent(
+        venture: new Venture(
           3, new Date(2016, 3, 15), "John's Dunken Brawl", "Diamond Bar", "18:00", "drinks")
       }
     });
