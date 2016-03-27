@@ -187,7 +187,11 @@ class Dashboard extends Component {
   }
 
   // Will be replaced with fb auth. Right now the email and pw are hard
-  // coded in
+  // coded in.
+  // If there's an error with registration, log it. Otherwise, create an
+  // user node in the database named with the uid for future access and
+  // with a name property set to the email (eventually it will be the fb
+  // name).
   register() {
     console.log("hi")
     database.createUser({
@@ -216,11 +220,12 @@ class Dashboard extends Component {
     });
   }
 
+
   login() {
     console.log("save method")
     database.authWithPassword({
       email    : "npcastaneda@gmail.com",
-      password : 'pw'
+      password : 'pdub'
     }, function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);

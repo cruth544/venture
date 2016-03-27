@@ -18,8 +18,8 @@ var EventTypes = t.enums({
 var Event = t.struct({
   category: t.String,
   details: t.maybe(t.String),
-  location: t.maybe(t.Number),
-  date: t.Date
+  location: t.maybe(t.Number)
+  // date: t.Date
 });
 
 var options = {
@@ -54,6 +54,14 @@ class CreateDetails extends Component {
     });
   }
 
+  submitForm () {
+    var value = this.refs.form.getValue();
+    // getValue returns null if validation failed
+    if (value) {
+      console.log(value);
+    }
+  }
+
   render(){
     return (
       <View style={styles.detailsContainer}>
@@ -61,9 +69,7 @@ class CreateDetails extends Component {
           ref="form"
           type={Event}
           options={options}/>
-        <TouchableHighlight style={styles.detailsButton} onPress={this.save.bind(this)} underlayColor='#99d9f4'>
-          <Text style={styles.detailsButtonText}>Save</Text>
-        </TouchableHighlight>
+        <button onClick={this.submitForm}>Save</button>
       </View>
     )
   }
